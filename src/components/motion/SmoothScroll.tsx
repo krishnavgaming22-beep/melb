@@ -32,7 +32,11 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
   return (
     <ScrollContext.Provider
       value={(target) => {
-        if (lenis.current) lenis.current.scrollTo(target, { offset: 0 });
+        if (lenis.current) {
+          // Lazy page content may mount after Lenis measured the loading screen.
+          lenis.current.resize();
+          lenis.current.scrollTo(target, { offset: 0 });
+        }
         else {
           const el =
             typeof target === "string" ? document.querySelector(target) : null;

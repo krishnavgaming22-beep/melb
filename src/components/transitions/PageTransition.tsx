@@ -8,7 +8,7 @@ export function PageTransition({ children }: { children: ReactNode }) {
   const mask = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (!location.hash) window.scrollTo(0, 0);
     const ctx = gsap.context(() => {
       gsap.fromTo(
         mask.current,

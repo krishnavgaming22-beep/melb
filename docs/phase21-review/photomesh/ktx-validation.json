@@ -1,0 +1,142 @@
+[
+  {
+    "file": ".photomesh-test/lods/high-textures/0.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/high-textures/1.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/high-textures/2.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/high-textures/3.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/high-textures/4.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/high-textures/5.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/high-textures/6.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/high-textures/7.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/high-textures/8.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/high-textures/9.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/high-textures/10.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/high-textures/11.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/high-textures/12.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/high-textures/13.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/high-textures/14.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/high-textures/15.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/high-textures/16.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/medium-textures/0.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/medium-textures/1.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/medium-textures/2.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/medium-textures/3.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/medium-textures/4.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/medium-textures/5.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/medium-textures/6.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/medium-textures/7.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/medium-textures/8.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/medium-textures/9.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/medium-textures/10.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/medium-textures/11.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/medium-textures/12.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/medium-textures/13.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/medium-textures/14.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/medium-textures/15.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/medium-textures/16.ktx2",
+    "returncode": 0
+  },
+  {
+    "file": ".photomesh-test/lods/far-textures/0.ktx2",
+    "returncode": 0
+  }
+]

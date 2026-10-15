@@ -1,0 +1,15 @@
+[out:json][timeout:180][bbox:-37.8375,144.935,-37.7975,144.999];
+(
+  way[building]; relation[building];
+  way["building:part"]; relation["building:part"];
+  way[highway];
+  way[railway~"^(rail|light_rail|tram)$"];
+  way[natural=water]; relation[natural=water];
+  way[waterway=riverbank]; relation[waterway=riverbank];
+  way[leisure~"^(park|garden|pitch|stadium|nature_reserve)$"];
+  relation[leisure~"^(park|garden|pitch|stadium|nature_reserve)$"];
+  way[landuse~"^(forest|grass|recreation_ground|village_green)$"];
+  way[natural=wood];
+  nwr["name"~"Melbourne Cricket Ground|Flinders Street Station|Federation Square|Shrine of Remembrance|Royal Botanic Gardens|Eureka Tower|Marvel Stadium|Queen Victoria Market|State Library Victoria|Rod Laver Arena|Royal Exhibition Building|Arts Centre Melbourne"];
+);
+out geom;

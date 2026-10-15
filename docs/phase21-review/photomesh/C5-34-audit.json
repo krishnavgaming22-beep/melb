@@ -1,0 +1,62 @@
+{
+  "tile": "C5-34",
+  "counts": {
+    "v": 1172688,
+    "vn": 2269956,
+    "vt": 6809868,
+    "nonfinite_vt": 123,
+    "f": 2269956,
+    "triangles": 2269956
+  },
+  "bounds_xyz": [
+    [
+      322416.99072265625,
+      5812108.971984863,
+      4.875048160553
+    ],
+    [
+      322697.99072265625,
+      5812389.971984863,
+      85.332733154297
+    ]
+  ],
+  "extent_xyz": [
+    281.0,
+    281.0,
+    80.45768499374401
+  ],
+  "mtllib": [
+    "C5-34.mtl"
+  ],
+  "materials": 3188,
+  "used_materials": 3188,
+  "undefined_materials": [],
+  "missing_textures": [],
+  "bad_textures": [],
+  "texture_count": 3188,
+  "texture_dimensions": {
+    "1024x1024": 1584,
+    "256x256": 291,
+    "512x512": 1038,
+    "32x32": 26,
+    "128x128": 125,
+    "16x16": 70,
+    "64x64": 54
+  },
+  "texture_pixels": 1954434560,
+  "texture_rgba_bytes": 7817738240,
+  "texture_rgba_mip_bytes_estimate": 10423650987,
+  "geometry_unindexed_position_normal_uv_bytes": 217915776,
+  "source_bytes": 746337980,
+  "obj_bytes": 575425688,
+  "jpg_bytes": 170566686,
+  "material_properties_example": {
+    "Ka": "1 1 1",
+    "Kd": "1 1 1",
+    "Ks": "0 0 0",
+    "Tr": "1",
+    "illum": "1",
+    "Ns": "0",
+    "map_Kd": "L_C5H_Tile-99-44-1-1_m-00016.jpg"
+  }
+}

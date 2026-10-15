@@ -1,0 +1,31 @@
+{
+  "triangles": 2745409,
+  "atlas_images_decoded": 17,
+  "finite_positions": true,
+  "uvs_in_range": true,
+  "bounds_local": [
+    [
+      -140.5,
+      4.013884544372559,
+      -140.5
+    ],
+    [
+      140.5,
+      84.99110412597656,
+      140.5
+    ]
+  ],
+  "bounds_roundtrip_max_error_source_units": 7.62939453125e-06,
+  "sources": {
+    "C4-22": {
+      "files_checked": 3606,
+      "changed": []
+    },
+    "C5-34": {
+      "files_checked": 3190,
+      "changed": []
+    }
+  },
+  "browser_validation": "Blocked by saved browser policy; not claimed tested",
+  "blender_validation": "GLB imported and three textured views rendered successfully"
+}

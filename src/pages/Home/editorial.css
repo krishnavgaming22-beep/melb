@@ -1,0 +1,485 @@
+.editorial-journey {
+  --gutter: clamp(22px, 6vw, 110px);
+  background: #f3f0e8;
+  color: #233b40;
+  position: relative;
+  z-index: 3;
+}
+.editorial-journey section[id],
+.editorial-article {
+  scroll-margin-top: 80px;
+}
+.editorial-journey p {
+  line-height: 1.75;
+}
+.editorial-journey a {
+  color: inherit;
+  text-underline-offset: 5px;
+}
+.editorial-journey button {
+  font: inherit;
+  cursor: pointer;
+  color: inherit;
+}
+.editorial-journey :focus-visible {
+  outline: 2px solid #916c3d;
+  outline-offset: 5px;
+}
+.editorial-intro {
+  min-height: 90svh;
+  padding: clamp(80px, 12vw, 180px) var(--gutter) 60px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top: 1px solid #233b4022;
+}
+.editorial-intro h2,
+.street-invitation h2,
+.your-melbourne > h2 {
+  font:
+    400 clamp(58px, 9.6vw, 150px)/0.98 Georgia,
+    serif;
+  letter-spacing: -0.06em;
+  margin: 40px 0;
+}
+.editorial-journey h2 em {
+  font-weight: 400;
+  color: #667b70;
+}
+.intro-bottom {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 25px;
+}
+.intro-bottom p {
+  font-size: clamp(18px, 2vw, 27px);
+  line-height: 1.5;
+}
+.intro-bottom a {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+}
+.intro-coordinate {
+  position: absolute;
+  right: var(--gutter);
+  top: 90px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+.article-nav {
+  position: sticky;
+  top: 0;
+  z-index: 8;
+  padding: 19px var(--gutter);
+  display: flex;
+  gap: clamp(16px, 4vw, 65px);
+  background: #f3f0e8f5;
+  border-block: 1px solid #233b4022;
+  overflow: auto;
+}
+.article-nav a {
+  font-size: 12px;
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 10px 0;
+}
+.article-nav a:hover {
+  color: #8a653b;
+}
+.editorial-article {
+  padding: clamp(80px, 10vw, 160px) var(--gutter);
+  border-bottom: 1px solid #233b4022;
+}
+.editorial-heading {
+  max-width: 1000px;
+  margin-bottom: 52px;
+}
+.editorial-heading h2 {
+  font:
+    400 clamp(46px, 6.8vw, 108px)/1.02 Georgia,
+    serif;
+  letter-spacing: -0.055em;
+  margin: 25px 0;
+}
+.editorial-deck {
+  font-size: clamp(18px, 2vw, 25px);
+  max-width: 38ch;
+  line-height: 1.5 !important;
+}
+.editorial-photo {
+  margin: 0;
+  min-width: 0;
+}
+.photo-window {
+  overflow: hidden;
+  background: #cbd0c4;
+  aspect-ratio: 4/3;
+}
+.editorial-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  animation: photo-in 0.45s ease both;
+}
+.editorial-photo figcaption {
+  font-size: 9px;
+  line-height: 1.6;
+  padding: 10px 0;
+  opacity: 0.8;
+}
+.place-story {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(28px, 5vw, 85px);
+  align-items: center;
+}
+.place-story h3,
+.education-copy h3,
+.university-detail h3,
+.living-answer h3 {
+  font:
+    400 clamp(28px, 3vw, 45px)/1.1 Georgia,
+    serif;
+  letter-spacing: -0.025em;
+  margin: 22px 0;
+}
+.place-story p {
+  font-size: 14px;
+  max-width: 48ch;
+}
+.editorial-tabs {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.editorial-tabs button {
+  border: 1px solid #233b4033;
+  border-radius: 24px;
+  padding: 12px 15px;
+  background: transparent;
+  font-size: 12px;
+  min-height: 44px;
+}
+.editorial-tabs button[aria-pressed="true"] {
+  background: #233b40;
+  color: #f3f0e8;
+}
+.editorial-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 12px;
+  margin-top: 24px;
+}
+.editorial-actions button,
+.editorial-link {
+  border: 0;
+  border-bottom: 1px solid #8d7755;
+  background: transparent;
+  padding: 12px 0;
+  font-size: 12px;
+  min-height: 44px;
+}
+.editorial-actions a {
+  font-size: 11px;
+  padding: 10px 0;
+}
+.editorial-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5vw;
+  max-width: 1040px;
+  margin: 50px auto 0;
+}
+.editorial-columns p {
+  font-size: 16px;
+}
+.culture-article {
+  background: #e5e8de;
+}
+.culture-article .place-story {
+  grid-template-columns: 1fr 1.35fr;
+}
+.culture-article .editorial-photo {
+  order: 2;
+}
+.education-grid,
+.belonging-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7vw;
+  align-items: center;
+}
+.education-grid .photo-window {
+  aspect-ratio: 4/5;
+}
+.education-copy p {
+  font-size: 16px;
+  max-width: 44ch;
+}
+.university-picker {
+  margin-top: 64px;
+  border-block: 1px solid #233b4033;
+  padding: 35px 0;
+}
+.university-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 7vw;
+}
+.university-detail > .eyebrow {
+  grid-column: 1/-1;
+}
+.university-detail h3 {
+  margin: 12px 0;
+  max-width: 15ch;
+}
+.university-detail a {
+  grid-column: 2;
+  font-size: 13px;
+}
+.editorial-note {
+  font-size: 12px;
+  max-width: 75ch;
+  margin-top: 28px;
+}
+.lifestyle-article {
+  background: #e7e2d6;
+}
+.lifestyle-article .place-story {
+  grid-template-columns: 1.5fr 1fr;
+}
+.belonging-article {
+  background: #253d40;
+  color: #f0efe4;
+}
+.belonging-article h2 em {
+  color: #b8c3ab;
+}
+.belonging-grid {
+  align-items: start;
+}
+.belonging-grid .photo-window {
+  aspect-ratio: 3/4;
+}
+.belonging-lead {
+  font:
+    400 36px Georgia,
+    serif;
+}
+.living-topics {
+  display: flex;
+  flex-direction: column;
+  margin: 25px 0;
+}
+.living-topics button {
+  border: 0;
+  border-top: 1px solid #f0efe444;
+  background: none;
+  padding: 17px 0;
+  display: flex;
+  gap: 15px;
+  text-align: left;
+  min-height: 52px;
+  font-size: 14px;
+}
+.living-topics button[aria-pressed="true"] {
+  color: #e5bd82;
+}
+.living-topics span {
+  font-size: 10px;
+  align-self: center;
+}
+.living-topics b {
+  margin-left: auto;
+}
+.living-answer {
+  min-height: 245px;
+}
+.living-answer h3 {
+  font-size: 26px;
+}
+.living-answer p {
+  font-size: 14px;
+}
+.living-answer a {
+  font-size: 12px;
+}
+.street-invitation {
+  padding: 130px var(--gutter);
+  min-height: 90svh;
+  background: linear-gradient(120deg, #d7ded0, #f3f0e8);
+  position: relative;
+}
+.street-invitation > p {
+  max-width: 46ch;
+}
+.street-invitation > button {
+  padding: 18px 27px;
+  border-radius: 30px;
+  background: #233b40;
+  color: #f3f0e8;
+  border: 0;
+  margin: 25px 0;
+  min-height: 52px;
+}
+.your-melbourne {
+  padding: 120px var(--gutter);
+}
+.next-paths {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 70px;
+}
+.next-path .photo-window {
+  aspect-ratio: 4/3;
+}
+.next-path h3 {
+  font:
+    400 58px Georgia,
+    serif;
+  letter-spacing: -0.06em;
+  margin: 24px 0;
+}
+.next-path p {
+  font-size: 14px;
+  max-width: 36ch;
+}
+.next-path > a {
+  display: inline-block;
+  font-size: 13px;
+  margin: 15px 0;
+  padding: 12px 0;
+}
+.next-path {
+  min-width: 0;
+}
+@keyframes photo-in {
+  from {
+    opacity: 0.7;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.article-nav {
+  gap: clamp(15px, 2.4vw, 38px);
+}
+.article-nav button {
+  font-size: 12px;
+  white-space: nowrap;
+  min-height: 44px;
+  padding: 0;
+}
+.story-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: #a48760;
+  width: var(--story-progress, 0%);
+  pointer-events: none;
+}
+.editorial-columns p + p {
+  margin-top: 0;
+}
+.editorial-journey .place-story-copy p {
+  margin: 12px 0;
+}
+.education-copy p {
+  margin: 18px 0;
+}
+.living-answer p {
+  margin: 15px 0;
+}
+.next-path p {
+  margin: 12px 0;
+}
+@media (max-width: 900px) {
+  .place-story,
+  .culture-article .place-story,
+  .lifestyle-article .place-story,
+  .education-grid,
+  .belonging-grid {
+    grid-template-columns: 1fr;
+  }
+  .culture-article .editorial-photo {
+    order: 0;
+  }
+  .education-grid .photo-window,
+  .belonging-grid .photo-window {
+    aspect-ratio: 3/2;
+  }
+  .place-story-copy {
+    max-width: 680px;
+  }
+  .next-paths {
+    gap: 20px;
+  }
+  .intro-coordinate {
+    display: none;
+  }
+  .landmark-explorer[data-mode="guided"] .landmark-feature-index {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .editorial-intro {
+    min-height: 75svh;
+  }
+  .intro-bottom {
+    align-items: start;
+    flex-direction: column;
+  }
+  .editorial-columns,
+  .university-detail,
+  .next-paths {
+    grid-template-columns: 1fr;
+  }
+  .university-detail a {
+    grid-column: 1;
+  }
+  .editorial-columns {
+    gap: 0;
+    margin-top: 24px;
+  }
+  .editorial-article {
+    padding-block: 70px;
+  }
+  .editorial-heading {
+    margin-bottom: 32px;
+  }
+  .article-nav {
+    padding: 10px 22px;
+  }
+  .next-paths {
+    gap: 50px;
+  }
+  .your-melbourne,
+  .street-invitation {
+    padding: 80px var(--gutter);
+  }
+  .editorial-intro h2,
+  .your-melbourne > h2,
+  .street-invitation h2 {
+    font-size: clamp(52px, 12vw, 72px);
+  }
+  .living-answer {
+    min-height: 0;
+  }
+  .next-path h3 {
+    margin: 14px 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .editorial-journey * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

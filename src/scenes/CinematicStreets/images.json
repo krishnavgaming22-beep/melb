@@ -1,0 +1,219 @@
+[
+  {
+    "id": "flinders-aerial",
+    "title": "File:Melbourne (AU), View from Eureka Tower, Flinders Street Railway Station -- 2019 -- 1462.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Melbourne_(AU),_View_from_Eureka_Tower,_Flinders_Street_Railway_Station_--_2019_--_1462.jpg",
+    "author": "Dietmar Rabich",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "description": "View from Eureka Tower (Flinders Street Station), Melbourne, Victoria, AustraliaNote: The photo was taken from the observation deck \u201eSkydeck 88\u201c of the Eureka Tower and was photographed through glass.",
+    "date": "Taken on\u00a014 October 2019, 18:17",
+    "variants": {
+      "960": {
+        "src": "/assets/streets/flinders-aerial-960.webp",
+        "width": 960,
+        "height": 640,
+        "bytes": 201196
+      },
+      "1920": {
+        "src": "/assets/streets/flinders-aerial-1920.webp",
+        "width": 1920,
+        "height": 1280,
+        "bytes": 684242
+      },
+      "3200": {
+        "src": "/assets/streets/flinders-aerial-3200.webp",
+        "width": 3200,
+        "height": 2133,
+        "bytes": 1463996
+      }
+    },
+    "changes": "Resized and encoded as WebP. Displayed with restrained scroll-linked framing; source geometry unaltered."
+  },
+  {
+    "id": "flinders-frontage",
+    "title": "File:Flinders Street Station Main Building, May 2019.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Flinders_Street_Station_Main_Building,_May_2019.jpg",
+    "author": "Medelam",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "description": "Bangunan dan pintu utama Stasiun kereta api Flinders Street, Melbourne",
+    "date": "2019-05-05 16:31:01",
+    "variants": {
+      "960": {
+        "src": "/assets/streets/flinders-frontage-960.webp",
+        "width": 960,
+        "height": 720,
+        "bytes": 132462
+      },
+      "1920": {
+        "src": "/assets/streets/flinders-frontage-1920.webp",
+        "width": 1920,
+        "height": 1440,
+        "bytes": 444946
+      },
+      "3200": {
+        "src": "/assets/streets/flinders-frontage-3200.webp",
+        "width": 3200,
+        "height": 2400,
+        "bytes": 1004532
+      }
+    },
+    "changes": "Resized and encoded as WebP. Displayed with restrained scroll-linked framing; source geometry unaltered."
+  },
+  {
+    "id": "flinders-corner",
+    "title": "File:Flinders Street Station Melbourne March 2021 cropped.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Flinders_Street_Station_Melbourne_March_2021_cropped.jpg",
+    "author": "Gracchus250",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "description": "Flinders Street Station in Melbourne with Eureka Tower and Australia 108 visible, 2021.",
+    "date": "2021-03-15 12:53:45",
+    "variants": {
+      "960": {
+        "src": "/assets/streets/flinders-corner-960.webp",
+        "width": 960,
+        "height": 600,
+        "bytes": 125550
+      },
+      "1920": {
+        "src": "/assets/streets/flinders-corner-1920.webp",
+        "width": 1920,
+        "height": 1200,
+        "bytes": 368372
+      },
+      "3200": {
+        "src": "/assets/streets/flinders-corner-3200.webp",
+        "width": 3200,
+        "height": 2000,
+        "bytes": 714800
+      }
+    },
+    "changes": "Resized and encoded as WebP. Displayed with restrained scroll-linked framing; source geometry unaltered."
+  },
+  {
+    "id": "collins-street",
+    "title": "File:101 Collins Street tram stop on Collins Street, Melbourne.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:101_Collins_Street_tram_stop_on_Collins_Street,_Melbourne.jpg",
+    "author": "Philip Mallis",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "description": "101 Collins Street tram stop on Collins Street, Melbourne",
+    "date": "2024-09-21 14:11:16",
+    "variants": {
+      "960": {
+        "src": "/assets/streets/collins-street-960.webp",
+        "width": 960,
+        "height": 640,
+        "bytes": 147796
+      },
+      "1920": {
+        "src": "/assets/streets/collins-street-1920.webp",
+        "width": 1920,
+        "height": 1280,
+        "bytes": 520154
+      },
+      "3200": {
+        "src": "/assets/streets/collins-street-3200.webp",
+        "width": 3200,
+        "height": 2133,
+        "bytes": 1239124
+      }
+    },
+    "changes": "Resized and encoded as WebP. Displayed with restrained scroll-linked framing; source geometry unaltered."
+  },
+  {
+    "id": "collins-detail",
+    "title": "File:Collins Street The Olderfleet Buildings 2010-11-22 04.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Collins_Street_The_Olderfleet_Buildings_2010-11-22_04.jpg",
+    "author": "Tangerineduel",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "description": "Collins Street The Olderfleet Buildings from other side of road, 22nd November 2010.",
+    "date": "2010-11-22 10:49:06",
+    "variants": {
+      "960": {
+        "src": "/assets/streets/collins-detail-960.webp",
+        "width": 960,
+        "height": 720,
+        "bytes": 255868
+      },
+      "1920": {
+        "src": "/assets/streets/collins-detail-1920.webp",
+        "width": 1920,
+        "height": 1440,
+        "bytes": 751522
+      },
+      "3200": {
+        "src": "/assets/streets/collins-detail-3200.webp",
+        "width": 3200,
+        "height": 2400,
+        "bytes": 1469696
+      }
+    },
+    "changes": "Resized and encoded as WebP. Displayed with restrained scroll-linked framing; source geometry unaltered."
+  },
+  {
+    "id": "collins-heritage",
+    "title": "File:Treasury on Collins Apartment Hotel.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Treasury_on_Collins_Apartment_Hotel.jpg",
+    "author": "Sgroey",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "description": "Treasury on Collins Apartment Hotel (hotel in Melbourne, Australia)",
+    "date": "3 January 2023\u00a0(according to <span lang=\"en\" dir=\"ltr\"><a href=\"https://en.wikipedia.org/wiki/Exif\" class=\"extiw\" title=\"en:Exif\">Exif</a></span> data)",
+    "variants": {
+      "960": {
+        "src": "/assets/streets/collins-heritage-960.webp",
+        "width": 960,
+        "height": 443,
+        "bytes": 183378
+      },
+      "1920": {
+        "src": "/assets/streets/collins-heritage-1920.webp",
+        "width": 1920,
+        "height": 886,
+        "bytes": 600398
+      },
+      "3200": {
+        "src": "/assets/streets/collins-heritage-3200.webp",
+        "width": 3200,
+        "height": 1476,
+        "bytes": 1253348
+      }
+    },
+    "changes": "Resized and encoded as WebP. Displayed with restrained scroll-linked framing; source geometry unaltered."
+  },
+  {
+    "id": "collins-tram",
+    "title": "File:Melbourne Tram on Collins Street in front of 538.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Melbourne_Tram_on_Collins_Street_in_front_of_538.jpg",
+    "author": "Ymblanter",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "description": "Tram 253 on Collins Street in front of 538, Melbourne, Victoria, Australia",
+    "date": "8 April 2024, 00:38:18 +09:00",
+    "variants": {
+      "960": {
+        "src": "/assets/streets/collins-tram-960.webp",
+        "width": 960,
+        "height": 650,
+        "bytes": 145342
+      },
+      "1920": {
+        "src": "/assets/streets/collins-tram-1920.webp",
+        "width": 1920,
+        "height": 1300,
+        "bytes": 429860
+      },
+      "3200": {
+        "src": "/assets/streets/collins-tram-3200.webp",
+        "width": 3200,
+        "height": 2166,
+        "bytes": 864748
+      }
+    },
+    "changes": "Resized and encoded as WebP. Displayed with restrained scroll-linked framing; source geometry unaltered."
+  }
+]

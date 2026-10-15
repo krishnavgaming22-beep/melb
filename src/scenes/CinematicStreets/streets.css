@@ -1,0 +1,321 @@
+.street-film-intro {
+  padding: clamp(80px, 12vw, 180px) var(--gutter);
+  background: #eeeae0;
+  color: #233b40;
+}
+.street-film-intro h2 {
+  font:
+    400 clamp(42px, 6.8vw, 108px)/1.04 Georgia,
+    serif;
+  letter-spacing: -0.055em;
+  margin: 32px 0;
+}
+.street-film-intro p {
+  max-width: 48ch;
+  line-height: 1.7;
+}
+.street-film-intro > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 50px;
+  margin-top: 25px;
+  padding: 16px 0;
+  border-bottom: 1px solid #8c9a96;
+}
+.street-film {
+  height: 900svh;
+  position: relative;
+  background: #15272b;
+  color: #faf5e9;
+}
+.street-film-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  --street-progress: 0;
+}
+.street-film-images {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.street-film-photo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.street-film-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 20, 23, 0.55),
+    transparent 18%,
+    transparent 54%,
+    rgba(7, 20, 23, 0.84)
+  );
+}
+.street-film-header,
+.street-film-footer,
+.street-film-caption,
+.street-film-status {
+  position: absolute;
+  z-index: 2;
+}
+.street-film-header {
+  top: max(28px, env(safe-area-inset-top));
+  left: clamp(20px, 3vw, 40px);
+  right: clamp(20px, 3vw, 40px);
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 24px;
+}
+.street-film-header > span {
+  font:
+    500 28px/1 Georgia,
+    serif;
+  letter-spacing: -0.04em;
+}
+.street-film-header small {
+  display: block;
+  font:
+    10px/1.4 Arial,
+    sans-serif;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-top: 14px;
+}
+.street-film-header a {
+  font-size: 12px;
+  padding: 12px 0;
+  min-height: 44px;
+}
+.street-film-caption {
+  left: clamp(20px, 5vw, 80px);
+  bottom: 150px;
+  max-width: min(580px, 80vw);
+  text-shadow: 0 2px 25px #15272b80;
+}
+.street-film-caption .eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+}
+.street-film-caption h2 {
+  font:
+    400 clamp(34px, 4.8vw, 74px)/1.02 Georgia,
+    serif;
+  letter-spacing: -0.04em;
+  margin: 16px 0;
+}
+.street-film-caption p {
+  font-size: 13px;
+  line-height: 1.7;
+  max-width: 43ch;
+  margin: 0;
+}
+.street-film-footer {
+  left: clamp(20px, 3vw, 40px);
+  right: clamp(20px, 3vw, 40px);
+  bottom: max(26px, env(safe-area-inset-bottom));
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+}
+.street-film-count {
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+.street-film-count i {
+  font-style: normal;
+  opacity: 0.6;
+}
+.street-film-count small {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 9px;
+  margin-top: 12px;
+}
+.street-film-hint {
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+}
+.street-film-hint small {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0;
+  opacity: 0.7;
+  margin-top: 12px;
+}
+.street-film-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: end;
+  max-width: 40%;
+}
+.street-film-actions button,
+.street-film-actions a {
+  background: transparent;
+  color: inherit;
+  border: 0;
+  border-bottom: 1px solid #ffffff60;
+  padding: 12px 0;
+  min-height: 44px;
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+.street-film :focus-visible {
+  outline: 2px solid #e9c68f;
+  outline-offset: 5px;
+}
+.street-film button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.street-film-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 3;
+  transform-origin: left;
+  transform: scaleX(var(--street-progress));
+  background: #d7bd8e;
+}
+.street-film-status {
+  top: 24%;
+  left: 5%;
+  right: 5%;
+  text-align: center;
+  font-size: 12px;
+}
+.street-film.is-reduced {
+  height: 100svh;
+}
+.street-film.is-reduced .street-film-photo {
+  will-change: auto;
+}
+.street-film-reading {
+  padding: 65px var(--gutter);
+  background: #eeeae0;
+  color: #233b40;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+.street-film-reading h3 {
+  font:
+    400 clamp(32px, 4vw, 52px)/1.1 Georgia,
+    serif;
+  margin: 20px 0;
+}
+.street-film-reading p {
+  font-size: 13px;
+  line-height: 1.8;
+  max-width: 58ch;
+}
+.street-film-reading a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.street-film-reading details {
+  font-size: 12px;
+}
+.street-film-reading summary {
+  cursor: pointer;
+  padding: 18px 0;
+  border-block: 1px solid #233b4040;
+}
+.street-film-reading ol {
+  padding-left: 20px;
+}
+.street-film-current-credit {
+  font-size: 10px;
+  grid-column: 1/-1;
+}
+@media (max-width: 699px) {
+  .street-film {
+    height: 700svh;
+  }
+  .street-film-images {
+    top: 16%;
+    bottom: 31%;
+  }
+  .street-film-stage::after {
+    background: linear-gradient(
+      180deg,
+      #15272b 0%,
+      transparent 23%,
+      transparent 50%,
+      #15272b 76%
+    );
+  }
+  .street-film-photo {
+    object-fit: contain;
+    object-position: center !important;
+    will-change: opacity;
+  }
+  .street-film-caption {
+    bottom: 130px;
+    max-width: 88%;
+  }
+  .street-film-caption h2 {
+    font-size: 34px;
+  }
+  .street-film-caption p {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  .street-film-caption .eyebrow {
+    font-size: 8px;
+  }
+  .street-film-hint {
+    display: none;
+  }
+  .street-film-actions {
+    max-width: 65%;
+    gap: 12px;
+  }
+  .street-film-header small {
+    max-width: 160px;
+    font-size: 8px;
+  }
+  .street-film-reading {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .street-film.is-reduced .street-film-caption {
+    bottom: 165px;
+  }
+}
+@media (max-height: 600px) and (min-width: 700px) {
+  .street-film-caption {
+    bottom: 110px;
+  }
+  .street-film-caption h2 {
+    font-size: 32px;
+  }
+  .street-film-header small {
+    margin-top: 5px;
+  }
+}
+body.street-film-active .site-header:not(.menu-open),
+body.street-film-active .article-nav {
+  visibility: hidden;
+  pointer-events: none;
+}

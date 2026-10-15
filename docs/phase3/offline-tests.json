@@ -1,0 +1,12 @@
+{
+  "checks": [
+    "Four local GLBs, Blender source files, 24 sourced features and licensed photographs",
+    "Stale camera/load callbacks, rapid mode changes, landmark switching and map view preservation",
+    "All four DOM journeys: 24 chapters, reverse navigation, modes, zoom/reset, photo stories, Escape and focus restoration",
+    "Asset failure keeps illustrated content and exit available",
+    "Four map detail entry buttons open the matching experience and preserve discovery state on return",
+    "Chapter boundaries and interrupted exit cannot close a newly opened landmark"
+  ],
+  "browser": "Not tested: saved localhost permission denial",
+  "date": "2026-10-13"
+}

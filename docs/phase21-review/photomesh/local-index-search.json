@@ -1,0 +1,44 @@
+{
+  "candidateFilesExamined": 420,
+  "datasetMatches": [],
+  "tileArchives": [
+    {
+      "path": "/Users/krishnavsewak/Downloads/D4-09.zip",
+      "entries": 6163,
+      "otherFiles": []
+    },
+    {
+      "path": "/Users/krishnavsewak/Downloads/C5-34.zip",
+      "entries": 3191,
+      "otherFiles": []
+    },
+    {
+      "path": "/Users/krishnavsewak/Downloads/C5-33.zip",
+      "entries": 2006,
+      "otherFiles": []
+    },
+    {
+      "path": "/Users/krishnavsewak/Downloads/C3-34.zip",
+      "entries": 5295,
+      "otherFiles": []
+    },
+    {
+      "path": "/Users/krishnavsewak/Downloads/C4-22.zip",
+      "entries": 3607,
+      "otherFiles": []
+    },
+    {
+      "path": "/Users/krishnavsewak/Downloads/D5-19.zip",
+      "entries": 1492,
+      "otherFiles": []
+    }
+  ],
+  "excludedDirectories": [
+    "node_modules",
+    ".git",
+    ".next",
+    "venv",
+    ".venv",
+    "__pycache__"
+  ]
+}

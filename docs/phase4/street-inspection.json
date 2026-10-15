@@ -1,0 +1,40 @@
+{
+  "points": [
+    {
+      "position": [
+        -65,
+        9.3665,
+        54
+      ],
+      "ground": 7.6665
+    },
+    {
+      "position": [
+        -25,
+        9.8471,
+        38
+      ],
+      "ground": 8.1471
+    },
+    {
+      "position": [
+        15,
+        9.8472,
+        22
+      ],
+      "ground": 8.1472
+    },
+    {
+      "position": [
+        55,
+        11.7203,
+        6
+      ],
+      "ground": 10.0203
+    }
+  ],
+  "source": "C4-22 high derived GLB",
+  "eyeHeight": 1.7,
+  "horizontalDatum": "unknown; geographic identification approximate",
+  "axis": "X east, Y AHD height, Z south"
+}

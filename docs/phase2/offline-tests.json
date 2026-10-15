@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-12",
+  "checks": [
+    "All 12 records: photos, licences, facts, sources, categories and future references",
+    "Multi-category filtering, abbreviations, partial searches and no results",
+    "Camera ownership, fly-to targets, switching, previous-view restoration, closing and reset",
+    "Repeated partial forward/reverse transitions and deterministic endpoints",
+    "Collision suppression preserves selected pin and all geographic positions",
+    "React DOM: every marker opens correct title, photo, facts, official link and closes",
+    "React DOM: search Enter, no-result recovery and five filters update pins and results together",
+    "React DOM: zoom/reset, keyboard pan, gesture mode toggle and pointer drag",
+    "React DOM: normal wheel stays page-scroll, deliberate zoom, two-pointer pinch and transform gesture lock",
+    "Polish: last-row keyboard access, truthful overflow hint, filter scroll reset and active indicator"
+  ],
+  "environment": "Node + jsdom. No browser rendering, network requests or WebGL execution.",
+  "liveBrowserVerified": false
+}

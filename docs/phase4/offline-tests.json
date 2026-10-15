@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-13",
+  "checks": [
+    "8,008 forward/reverse path samples: deterministic positions, finite targets and continuous chapter tangents",
+    "Scroll, direct selection and rapid previous/next share one bounded progress target",
+    "Five editorial articles: selectors, university links, practical topics, licensed local photos and map/landmark connections",
+    "Archived Phase 4 prototype (not on main website): four viewpoints, modes, reduced motion, looking, quality switch, error recovery, exit and restored focus",
+    "Viewpoints lie within the original tile and 1.7 m above sampled high-LOD mesh surfaces; no datum alignment claimed",
+    "Photographic streets: 10,001 deterministic samples, reduced-motion forward/reverse/replay, four-image mount limit, attribution, skip and legacy isolation"
+  ],
+  "pathSamples": [
+    {
+      "id": "mcg",
+      "samples": 2002,
+      "maxStep": 0.12065821029660094,
+      "minHeight": 11.967806991189596,
+      "minDistance": 15.39866201098798
+    },
+    {
+      "id": "flinders",
+      "samples": 2002,
+      "maxStep": 0.13048178196371274,
+      "minHeight": 3.9177915230478777,
+      "minDistance": 11.024963522048704
+    },
+    {
+      "id": "federation",
+      "samples": 2002,
+      "maxStep": 0.10901684544331593,
+      "minHeight": 6.4397683434498285,
+      "minDistance": 12.083973829938586
+    },
+    {
+      "id": "shrine",
+      "samples": 2002,
+      "maxStep": 0.05219974229209513,
+      "minHeight": 2.2862694585867938,
+      "minDistance": 4.752860448932001
+    }
+  ],
+  "browser": "Blocked by browser URL security policy; no FPS, responsive layout or live WebGL claims"
+}

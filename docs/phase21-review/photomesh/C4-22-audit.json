@@ -1,0 +1,62 @@
+{
+  "tile": "C4-22",
+  "counts": {
+    "v": 1423571,
+    "vn": 2745409,
+    "vt": 8236227,
+    "nonfinite_vt": 66,
+    "f": 2745409,
+    "triangles": 2745409
+  },
+  "bounds_xyz": [
+    [
+      320736.99072265625,
+      5812668.971984863,
+      4.013884544373
+    ],
+    [
+      321017.99072265625,
+      5812949.972000122,
+      84.991104125977
+    ]
+  ],
+  "extent_xyz": [
+    281.0,
+    281.00001525878906,
+    80.977219581604
+  ],
+  "mtllib": [
+    "C4-22.mtl"
+  ],
+  "materials": 3604,
+  "used_materials": 3604,
+  "undefined_materials": [],
+  "missing_textures": [],
+  "bad_textures": [],
+  "texture_count": 3604,
+  "texture_dimensions": {
+    "256x256": 272,
+    "1024x1024": 1843,
+    "512x512": 1232,
+    "32x32": 20,
+    "16x16": 58,
+    "64x64": 52,
+    "128x128": 127
+  },
+  "texture_pixels": 2275641856,
+  "texture_rgba_bytes": 9102567424,
+  "texture_rgba_mip_bytes_estimate": 12136756565,
+  "geometry_unindexed_position_normal_uv_bytes": 263559264,
+  "source_bytes": 870588718,
+  "obj_bytes": 698680120,
+  "jpg_bytes": 171513435,
+  "material_properties_example": {
+    "Ka": "1 1 1",
+    "Kd": "1 1 1",
+    "Ks": "0 0 0",
+    "Tr": "1",
+    "illum": "1",
+    "Ns": "0",
+    "map_Kd": "S_CBD_Tile-151-103-1-1_m-00017.jpg"
+  }
+}

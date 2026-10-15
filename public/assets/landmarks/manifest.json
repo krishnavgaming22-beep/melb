@@ -1,0 +1,50 @@
+{
+  "mcg": {
+    "triangles": 91028,
+    "drawCalls": 15,
+    "bytes": 833600,
+    "textures": 0,
+    "scale": "1 unit = 20 metres",
+    "accuracy": "reference-based architectural study; estimated detail, not a survey",
+    "uncompressedBytes": 4839972,
+    "decodedGeometryBytes": 2262729,
+    "nodeDecodeMs": 13,
+    "compression": "Meshopt + vertex quantisation; no geometry decimation"
+  },
+  "flinders": {
+    "triangles": 51965,
+    "drawCalls": 12,
+    "bytes": 563352,
+    "textures": 0,
+    "scale": "1 unit = 20 metres",
+    "accuracy": "reference-based architectural study; estimated detail, not a survey",
+    "uncompressedBytes": 3372080,
+    "decodedGeometryBytes": 1507755,
+    "nodeDecodeMs": 5,
+    "compression": "Meshopt + vertex quantisation; no geometry decimation"
+  },
+  "federation": {
+    "triangles": 17570,
+    "drawCalls": 9,
+    "bytes": 214692,
+    "textures": 0,
+    "scale": "1 unit = 20 metres",
+    "accuracy": "reference-based architectural study; estimated detail, not a survey",
+    "uncompressedBytes": 1110580,
+    "decodedGeometryBytes": 432381,
+    "nodeDecodeMs": 2,
+    "compression": "Meshopt + vertex quantisation; no geometry decimation"
+  },
+  "shrine": {
+    "triangles": 18560,
+    "drawCalls": 7,
+    "bytes": 218484,
+    "textures": 0,
+    "scale": "1 unit = 20 metres",
+    "accuracy": "reference-based architectural study; estimated detail, not a survey",
+    "uncompressedBytes": 1022660,
+    "decodedGeometryBytes": 437232,
+    "nodeDecodeMs": 4,
+    "compression": "Meshopt + vertex quantisation; no geometry decimation"
+  }
+}

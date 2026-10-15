@@ -1,0 +1,12 @@
+{
+  "triangles": 578259,
+  "vertices": 1287611,
+  "meshCount": 115,
+  "decodedGeometryBytes": 15911133,
+  "maxHeightMetres": 316.9969872352732,
+  "nodeDecodeMs": 57,
+  "geographicDrift": 0,
+  "landmarkCount": 12,
+  "interactivePinCount": 12,
+  "browserPerformance": "Not measured: localhost blocked by browser policy"
+}

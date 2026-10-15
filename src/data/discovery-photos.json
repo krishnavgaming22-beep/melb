@@ -1,0 +1,110 @@
+{
+  "mcg": {
+    "src": "/assets/discovery/mcg.jpg",
+    "alt": "Melbourne Cricket Ground",
+    "credit": "Flickerd",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:2017_AFL_Grand_Final_panorama_during_national_anthem.jpg",
+    "changes": "Resized and JPEG-compressed; responsive cropping where applicable. No colour edits."
+  },
+  "flinders": {
+    "src": "/assets/discovery/flinders.jpg",
+    "alt": "Flinders Street railway station",
+    "credit": "Created by Philip Mallis in 2021; cropped by HappyWaldo",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Flinders_Station_and_trams.jpg",
+    "changes": "Resized and JPEG-compressed; responsive cropping where applicable. No colour edits."
+  },
+  "federation": {
+    "src": "/assets/discovery/federation.jpg",
+    "alt": "Federation Square",
+    "credit": "DXR",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Fed_Square,_Melbourne,_west_view_20230219_1.jpg",
+    "changes": "Resized and JPEG-compressed; responsive cropping where applicable. No colour edits."
+  },
+  "shrine": {
+    "src": "/assets/discovery/shrine.jpg",
+    "alt": "Shrine of Remembrance",
+    "credit": "Jorge L\u00e1scar from Australia",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Shrine_of_Rememberance_(11884180023).jpg",
+    "changes": "Resized and JPEG-compressed; responsive cropping where applicable. No colour edits."
+  },
+  "gardens": {
+    "src": "/assets/discovery/gardens.jpg",
+    "alt": "Royal Botanic Gardens Victoria",
+    "credit": "Johntorcasio",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Botanical_gardens_main_entrance.jpg",
+    "changes": "Resized and JPEG-compressed; responsive cropping where applicable. No colour edits."
+  },
+  "market": {
+    "src": "/assets/discovery/market.jpg",
+    "alt": "Queen Victoria Market",
+    "credit": "Bob T",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Aerial_photograph_of_Queen_Victoria_Market.jpg",
+    "changes": "Resized and JPEG-compressed; responsive cropping where applicable. No colour edits."
+  },
+  "marvel": {
+    "src": "/assets/discovery/marvel.jpg",
+    "alt": "Docklands Stadium",
+    "credit": "Aspirex",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Marvel_Stadium_during_curtain_raiser.jpg",
+    "changes": "Resized and JPEG-compressed; responsive cropping where applicable. No colour edits."
+  },
+  "library": {
+    "src": "/assets/discovery/library.jpg",
+    "alt": "State Library Victoria",
+    "credit": "Diliff",
+    "license": "CC BY 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+    "source": "https://commons.wikimedia.org/wiki/File:State_Library_of_Victoria_-_right_side.jpg",
+    "changes": "Resized and JPEG-compressed; responsive cropping where applicable. No colour edits."
+  },
+  "eureka": {
+    "src": "/assets/discovery/eureka.jpg",
+    "alt": "Eureka Tower",
+    "credit": "Phillip Capper",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Eureka_Tower,_August_2010.png",
+    "changes": "Resized and JPEG-compressed; responsive cropping where applicable. No colour edits."
+  },
+  "rod-laver": {
+    "src": "/assets/discovery/rod-laver.jpg",
+    "alt": "Rod Laver Arena",
+    "credit": "Gracchus250",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Rod_Laver_Arena_Melbourne_Park_Australian_Open_2023_quarter_final.jpg",
+    "changes": "Resized and JPEG-compressed; responsive cropping where applicable. No colour edits."
+  },
+  "exhibition": {
+    "src": "/assets/discovery/exhibition.jpg",
+    "alt": "Royal Exhibition Building",
+    "credit": "Photograph taken by Diliff and straightened by Ian Fieggen",
+    "license": "CC BY 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+    "source": "https://commons.wikimedia.org/wiki/File:Royal_exhibition_building_tulips_straight.jpg",
+    "changes": "Resized and JPEG-compressed; responsive cropping where applicable. No colour edits."
+  },
+  "arts-centre": {
+    "src": "/assets/discovery/arts-centre.jpg",
+    "alt": "Arts Centre Melbourne, north view",
+    "credit": "DXR",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Arts_Centre,_Melbourne,_north_view_20230219_1.jpg",
+    "changes": "Resized and JPEG-compressed; responsive cropping where applicable. No colour edits."
+  }
+}

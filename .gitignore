@@ -1,0 +1,19 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.DS_Store
+*.blend1
+.photomesh-test/
+.env
+.env.*
+!.env.example
+# Local research originals, Blender backups and inspection renders stay on this machine.
+assets/geography/
+assets/streets/source/
+assets/blender/*.blend
+assets/discovery/
+docs/**/*.png
+docs/**/*.jpg
+docs/**/*.jpeg
+docs/**/*.mov
+public/assets/photomesh/

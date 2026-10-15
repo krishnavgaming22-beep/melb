@@ -1,0 +1,81 @@
+{
+  "report": [
+    {
+      "id": "mcg",
+      "triangles": 91028,
+      "vertices": 166625,
+      "bounds": [
+        [
+          -8,
+          -0.029922291882030938,
+          -8
+        ],
+        [
+          8,
+          4.249784458113926,
+          8
+        ]
+      ],
+      "cameraPathSamples": 1960,
+      "viewports": 3
+    },
+    {
+      "id": "flinders",
+      "triangles": 51965,
+      "vertices": 109751,
+      "bounds": [
+        [
+          -7.75,
+          -0.03452932836211224,
+          -3.013480842959351
+        ],
+        [
+          7.75,
+          2.3998115935764233,
+          1.999763481551561
+        ]
+      ],
+      "cameraPathSamples": 1960,
+      "viewports": 3
+    },
+    {
+      "id": "federation",
+      "triangles": 17570,
+      "vertices": 36329,
+      "bounds": [
+        [
+          -5.125,
+          -0.05008893706954684,
+          -5.450369965401823
+        ],
+        [
+          5.125,
+          1.3400467221550711,
+          4.225003719446253
+        ]
+      ],
+      "cameraPathSamples": 1960,
+      "viewports": 3
+    },
+    {
+      "id": "shrine",
+      "triangles": 18560,
+      "vertices": 36208,
+      "bounds": [
+        [
+          -4.000106814783166,
+          -0.05006532513402898,
+          -4.5
+        ],
+        [
+          4.000106814783166,
+          1.3734741499556262,
+          4.5
+        ]
+      ],
+      "cameraPathSamples": 1960,
+      "viewports": 3
+    }
+  ],
+  "note": "Offline decoded geometry and camera mathematics. No browser FPS, visual occlusion, CSS layout or GPU testing implied."
+}

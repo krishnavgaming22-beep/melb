@@ -2,6 +2,10 @@
 
 **Arrive. Explore. Belong.** An interactive Melbourne experience with a cinematic arrival, a geographic discovery map, landmark journeys, editorial stories and a scroll-directed photographic essay through Flinders Street and Collins Street.
 
+**Live site:** https://krishnavgaming22-beep.github.io/melb/
+
+**Street journey:** https://krishnavgaming22-beep.github.io/melb/#walk
+
 ## Develop
 
 Use Node.js 22 or newer.
@@ -32,4 +36,4 @@ Large research downloads and original photomesh tiles stay outside version contr
 
 ## Verification status
 
-The production build and automated state/DOM tests pass. Live visual, browser/WebGL and motion acceptance for the newest photographic street sequence remains pending browser access; offline tests are not a claim of measured FPS or full browser coverage. See `docs/PHASE_4_1.md`.
+The production build and automated state/DOM tests pass. The deployed homepage, menu navigation and both street chapters passed an initial browser smoke check with no console errors. Full browser/WebGL, responsive and motion acceptance remains pending; these checks are not a claim of measured FPS or full browser coverage. See `docs/PHASE_4_1.md`.

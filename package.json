@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node scripts/test-discovery.mjs && node scripts/test-landmarks.mjs && node scripts/test-phase4.mjs",
+    "test": "node scripts/test-discovery.mjs && node scripts/test-landmarks.mjs && node scripts/test-phase4.mjs && node scripts/test-phase5.mjs",
     "test:landmark-assets": "node scripts/verify-landmark-assets.mjs",
     "dev": "vite --host 0.0.0.0",
     "build": "tsc -b && vite build",

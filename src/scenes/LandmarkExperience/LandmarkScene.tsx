@@ -11,6 +11,7 @@ import {
 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { loadLandmark } from "./assets";
+import { createLandmarkControls } from "./cameraControls";
 import { sampleExteriorArc } from "./cameraPath";
 import { sampleTour, tourProgress } from "./tour";
 import { recordFrame } from "../../components/motion/frameMetrics";
@@ -41,7 +42,7 @@ export function LandmarkScene({
   const state = useExplorer(),
     landmark = landmarks[id];
   const [model, setModel] = useState<Group | null>(null);
-  const controls = useMemo(() => new OrbitControls(camera), [camera]);
+  const controlsRef = useRef<OrbitControls | null>(null);
   const motion = useRef({
     request: -1,
     elapsed: 0,
@@ -103,28 +104,26 @@ export function LandmarkScene({
       fog = scene.fog;
     scene.background = new Color("#e7e5db");
     scene.fog = null;
-    controls.connect(gl.domElement);
     const pc = camera as PerspectiveCamera;
     const old = { near: pc.near, far: pc.far, fov: pc.fov, up: pc.up.clone() };
     pc.near = 0.1;
     pc.far = 160;
     pc.fov = 39;
     pc.up.set(0, 1, 0);
+    const controls = createLandmarkControls(
+      camera,
+      gl.domElement,
+      landmark.radius,
+      reduced,
+    );
+    controlsRef.current = controls;
     pc.updateProjectionMatrix();
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.075;
-    controls.enablePan = false;
-    controls.minPolarAngle = 0.22;
-    controls.maxPolarAngle = 1.22;
-    controls.minDistance = landmark.radius * 1.4;
-    controls.maxDistance = landmark.radius * 5.5;
-    controls.rotateSpeed = 0.55;
-    controls.zoomSpeed = 0.6;
     camera.position.fromArray(landmark.home).multiplyScalar(1.13);
     controls.target.fromArray(landmark.target);
     controls.update();
     return () => {
       controls.dispose();
+      controlsRef.current = null;
       scene.background = background;
       scene.fog = fog;
       pc.near = old.near;
@@ -134,8 +133,10 @@ export function LandmarkScene({
       pc.clearViewOffset();
       pc.updateProjectionMatrix();
     };
-  }, [camera, scene, controls, landmark]);
+  }, [camera, gl, scene, landmark, reduced]);
   useFrame((_, dt) => {
+    const controls = controlsRef.current;
+    if (!controls) return;
     const s = getExplorer(),
       m = motion.current;
     if (s.ready)
@@ -208,6 +209,11 @@ export function LandmarkScene({
       }
     } else m.guided = false;
     if (!guided && s.request !== m.request && s.ready) {
+      controls.enabled = false;
+      const damping = controls.enableDamping;
+      controls.enableDamping = false;
+      controls.update();
+      controls.enableDamping = damping;
       m.request = s.request;
       m.elapsed = 0;
       m.from.copy(camera.position);
@@ -276,7 +282,7 @@ export function LandmarkScene({
     } else if (!guided) {
       controls.enabled =
         s.ready && s.mode === "free" && !s.story && s.phase === "exploring";
-      controls.update();
+      controls.update(Math.min(dt, 0.05));
     }
     // Conservative outer-envelope collision safeguard for direct orbit input.
     if (controls.enabled && camera.position.length() < landmark.radius * 1.5) {

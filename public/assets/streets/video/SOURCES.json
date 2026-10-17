@@ -1,0 +1,28 @@
+[
+  {
+    "id": "melbourne-aerial",
+    "author": "Nick English",
+    "source": "https://www.pexels.com/video/melbourne-city-17920530/",
+    "download": "https://videos.pexels.com/video-files/17920530/17920530-uhd_2560_1440_30fps.mp4",
+    "motion": "Moving aerial above Melbourne; not a ground-level walk.",
+    "license": "Pexels License",
+    "licenseUrl": "https://www.pexels.com/license/",
+    "verified": "2026-10-17",
+    "costINR": 0,
+    "changes": "Source 0.5\u201320.5 seconds; resized to 1080p/720p, muted, 24 fps H.264, 6-frame GOP, no B frames, faststart. Scroll controls time.",
+    "restrictions": "No implied endorsement, no resale as unaltered stock. Source authors retain rights."
+  },
+  {
+    "id": "flinders-night",
+    "author": "Peter Erb",
+    "source": "https://www.pexels.com/video/cars-driving-on-the-busy-road-8949648/",
+    "download": "https://videos.pexels.com/video-files/8949648/8949648-uhd_2560_1440_25fps.mp4",
+    "motion": "Fixed camera with real moving traffic at Flinders and Swanston streets.",
+    "license": "Pexels License",
+    "licenseUrl": "https://www.pexels.com/license/",
+    "verified": "2026-10-17",
+    "costINR": 0,
+    "changes": "Source 0.5\u201320.5 seconds; resized to 1080p/720p, muted, 24 fps H.264, 6-frame GOP, no B frames, faststart. Scroll controls time.",
+    "restrictions": "No implied endorsement, no resale as unaltered stock. Source authors retain rights."
+  }
+]

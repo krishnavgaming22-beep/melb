@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
+import { useEditorialMotion } from "../../components/motion/useEditorialMotion";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { places } from "../../data/places";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
@@ -145,46 +145,7 @@ export function EditorialJourney() {
     });
     return () => trigger.kill();
   }, [reduced]);
-  useLayoutEffect(() => {
-    if (reduced) return;
-    const ctx = gsap.context(() => {
-      gsap.utils
-        .toArray<HTMLElement>(".editorial-photo .photo-window")
-        .forEach((el) => {
-          gsap.fromTo(
-            el,
-            { clipPath: "inset(5% 0% 5% 0%)" },
-            {
-              clipPath: "inset(0% 0% 0% 0%)",
-              ease: "none",
-              scrollTrigger: {
-                trigger: el,
-                start: "top 90%",
-                end: "top 20%",
-                scrub: true,
-              },
-            },
-          );
-        });
-      gsap.utils.toArray<HTMLElement>(".editorial-heading").forEach((el) => {
-        gsap.fromTo(
-          el,
-          { y: 32 },
-          {
-            y: 0,
-            ease: "none",
-            scrollTrigger: {
-              trigger: el,
-              start: "top bottom",
-              end: "top 45%",
-              scrub: true,
-            },
-          },
-        );
-      });
-    }, root);
-    return () => ctx.revert();
-  }, [reduced]);
+  useEditorialMotion(root);
   return (
     <div ref={root} className="editorial-journey">
       <section id="why-melbourne" className="editorial-intro">

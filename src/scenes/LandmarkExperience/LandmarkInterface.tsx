@@ -428,7 +428,11 @@ export function LandmarkInterface() {
                   © OpenStreetMap contributors, ODbL 1.0
                 </a>
                 .{" "}
-                <a href={assetUrl("/assets/landmarks/federation-footprints.geojson")}>
+                <a
+                  href={assetUrl(
+                    "/assets/landmarks/federation-footprints.geojson",
+                  )}
+                >
                   Download source footprints
                 </a>
                 . Heights and façade details are estimated.
@@ -447,7 +451,7 @@ export function LandmarkInterface() {
       <footer className="landmark-footer">
         <p>
           {s.mode === "free"
-            ? "Drag to orbit · Pinch or scroll to zoom"
+            ? "Drag right to look right · Drag up to rise · Pinch or scroll to zoom"
             : "Six perspectives · Use arrows or scroll to continue"}
           <small>Architectural study · Estimated detail</small>
         </p>

@@ -17,6 +17,7 @@ export function Diagnostics() {
         ref.current.dataset.drawCalls = String(journey.drawCalls);
         ref.current.dataset.triangles = String(journey.triangles);
         ref.current.dataset.rendered = journey.rendered.toFixed(4);
+        ref.current.dataset.frameReport = JSON.stringify(frameReport());
         ref.current.dataset.canvases = String(
           document.querySelectorAll("canvas").length,
         );

@@ -9,6 +9,7 @@ export function Navigation() {
   useEffect(() => setOpen(false), [loc.pathname]);
   useEffect(() => {
     if (!open) return;
+    window.dispatchEvent(new CustomEvent("melb:menu-active", { detail: true }));
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     panel.current?.querySelector("a")?.focus();
@@ -37,6 +38,9 @@ export function Navigation() {
     window.addEventListener("keydown", key);
     return () => {
       document.body.style.overflow = prev;
+      window.dispatchEvent(
+        new CustomEvent("melb:menu-active", { detail: false }),
+      );
       window.removeEventListener("keydown", key);
     };
   }, [open]);

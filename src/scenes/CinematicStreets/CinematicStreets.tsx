@@ -1,80 +1,80 @@
-import { assetUrl } from "../../utils/assetUrl";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
 import { useScrollTo } from "../../components/motion/ScrollContext";
-import { streetFrame, streetShots } from "./timeline";
+import { recordFrame } from "../../components/motion/frameMetrics";
+import { assetUrl } from "../../utils/assetUrl";
+import {
+  filmClips,
+  filmChapters,
+  videoFrame,
+  chapterFromTime,
+} from "./videoTimeline";
+import { VideoScrubber } from "./VideoScrubber";
 import images from "./images.json";
+import { streetShots } from "./timeline";
 import "./streets.css";
 
-/** A photographic essay. One document-scroll progress controls framing and dissolves. */
-const imageSize = () =>
-  innerWidth < 700
-    ? "960"
-    : innerWidth * Math.min(window.devicePixelRatio || 1, 2) > 1920
-      ? "3200"
-      : "1920";
 export function CinematicStreets() {
   const root = useRef<HTMLElement>(null),
     stage = useRef<HTMLDivElement>(null);
-  const lastIndex = useRef(0);
+  const videos = useRef<(HTMLVideoElement | null)[]>([]);
+  const controllers = useRef<VideoScrubber[]>([]);
   const progress = useRef(0),
-    paint = useRef<() => void>(() => {});
+    paint = useRef(() => {}),
+    active = useRef(false),
+    lastChapter = useRef(0),
+    shown = useRef(0);
   const reduced = useReducedMotion(),
     scrollTo = useScrollTo();
-  const [index, setIndex] = useState(0),
-    [near, setNear] = useState(false);
-  const [loaded, setLoaded] = useState(0),
-    [presented, setPresented] = useState<string>(streetShots[0].image),
-    [failed, setFailed] = useState<string[]>([]);
-  const [width, setWidth] = useState(() => imageSize());
-  const shot = streetShots[index];
-  const ids = [
-    ...new Set([
-      streetShots[Math.max(0, index - 1)].image,
-      shot.image,
-      streetShots[Math.min(7, index + 1)].image,
-      presented,
-    ]),
-  ];
-  const current = images.find((a) => a.id === shot.image)!;
+  const [near, setNear] = useState(false),
+    [chapter, setChapter] = useState(0),
+    [failed, setFailed] = useState(false),
+    [ready, setReady] = useState(false);
+  const [compact, setCompact] = useState(() => innerWidth < 700);
+  const frame = filmChapters[chapter],
+    clip = filmClips[Math.floor(chapter / 4)];
   paint.current = () => {
-    const f = streetFrame(progress.current, reduced);
-    const nextId = streetShots[f.next].image;
-    const hasImage = (id: string) =>
-      !!stage.current?.querySelector(
-        `img[data-image="${id}"][data-ready="true"]`,
-      );
-    const currentReady = hasImage(streetShots[f.index].image);
-    const nextReady = hasImage(nextId);
-    stage.current
-      ?.querySelectorAll<HTMLElement>(".street-film-photo")
-      .forEach((el) => {
-        const id = el.dataset.image;
-        const active =
-          id === (currentReady ? streetShots[f.index].image : presented);
-        const next = id === nextId && !active;
-        const canBlend =
-          currentReady && nextReady && nextId !== streetShots[f.index].image;
-        el.style.opacity = String(
-          active
-            ? canBlend
-              ? 1 - f.blend
-              : 1
-            : next && canBlend
-              ? f.blend
-              : 0,
-        );
-        if (currentReady || !active)
-          el.style.transform =
-            active && !reduced && innerWidth >= 700
-              ? `translate3d(${f.x}%,0,0) scale(${f.scale * f.detail})`
-              : "none";
-      });
-    stage.current?.style.setProperty(
-      "--street-progress",
-      String(progress.current),
+    const f = videoFrame(progress.current),
+      cs = controllers.current;
+    cs.forEach((c, i) =>
+      c.request(i === f.clip ? f.time : i < f.clip ? 19.95 : 0),
     );
+    const wanted = cs[f.clip];
+    // Captions switch only after the new clip has decoded at its requested time.
+    if (wanted?.ready && Math.abs(wanted.settled - f.time) < 0.65) {
+      shown.current = f.clip;
+      const index = chapterFromTime(f.clip, wanted.settled);
+      if (index !== lastChapter.current) {
+        lastChapter.current = index;
+        setChapter(index);
+      }
+      setReady(true);
+    }
+    videos.current.forEach((v, i) => {
+      if (v) v.style.opacity = cs[i]?.ready && i === shown.current ? "1" : "0";
+    });
+    stage.current?.style.setProperty("--street-progress", String(f.p));
+    const output = stage.current?.querySelector<HTMLOutputElement>("output");
+    if (output) {
+      output.dataset.target = f.time.toFixed(3);
+      output.dataset.time = (cs[shown.current]?.settled ?? 0).toFixed(3);
+      output.dataset.clip = String(shown.current);
+      output.dataset.seeks = String(cs.reduce((n, c) => n + c.seeks, 0));
+      output.dataset.maxSeekMs = String(
+        Math.round(Math.max(0, ...cs.map((c) => c.maxSeekMs))),
+      );
+      output.dataset.meanSeekMs = String(
+        Math.round(
+          cs.reduce((n, c) => n + c.totalSeekMs, 0) /
+            Math.max(
+              1,
+              cs.reduce((n, c) => n + c.seeks, 0),
+            ),
+        ),
+      );
+    }
   };
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -82,80 +82,81 @@ export function CinematicStreets() {
       { rootMargin: "100% 0px" },
     );
     if (root.current) observer.observe(root.current);
-    const resize = () => setWidth(imageSize());
-    const chrome = () => {
-      const bounds = root.current?.getBoundingClientRect();
-      document.body.classList.toggle(
-        "street-film-active",
-        !!bounds && bounds.top <= 40 && bounds.bottom > innerHeight * 0.6,
-      );
-    };
-    window.addEventListener("scroll", chrome, { passive: true });
-    window.addEventListener("resize", resize);
+    const media = matchMedia("(max-width:699px)");
+    const resize = () => setCompact(media.matches);
+    media.addEventListener("change", resize);
     return () => {
       observer.disconnect();
-      window.removeEventListener("resize", resize);
-      window.removeEventListener("scroll", chrome);
+      media.removeEventListener("change", resize);
       document.body.classList.remove("street-film-active");
     };
   }, []);
   useLayoutEffect(() => {
     if (reduced) return;
-    const trigger = ScrollTrigger.create({
-      trigger: root.current,
-      start: "top top",
-      end: "bottom bottom",
-      invalidateOnRefresh: true,
-      onUpdate(self) {
-        progress.current = self.progress;
-        const next = streetFrame(self.progress).index;
-        if (lastIndex.current !== next) {
-          lastIndex.current = next;
-          setIndex(next);
-        }
-        paint.current();
+    const proxy = { p: 0 };
+    const animation = gsap.to(proxy, {
+      p: 1,
+      ease: "none",
+      scrollTrigger: {
+        id: "street-video",
+        trigger: root.current,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 0.18,
+        invalidateOnRefresh: true,
+        onToggle(self) {
+          active.current = self.isActive;
+          document.body.classList.toggle("street-film-active", self.isActive);
+        },
       },
-      onRefresh(self) {
-        progress.current = self.progress;
-        const next = streetFrame(self.progress).index;
-        if (lastIndex.current !== next) {
-          lastIndex.current = next;
-          setIndex(next);
-        }
+      onUpdate() {
+        progress.current = proxy.p;
         paint.current();
       },
     });
-    return () => trigger.kill();
+    return () => {
+      animation.scrollTrigger?.kill();
+      animation.kill();
+      document.body.classList.remove("street-film-active");
+    };
   }, [reduced]);
-  useLayoutEffect(() => {
-    if (
-      stage.current?.querySelector(
-        `img[data-image="${shot.image}"][data-ready="true"]`,
-      )
-    )
-      setPresented(shot.image);
+  useEffect(() => {
+    if (!near) return;
+    setReady(false);
+    setFailed(false);
+    controllers.current = videos.current
+      .filter((v): v is HTMLVideoElement => !!v)
+      .map((v) => new VideoScrubber(v, () => paint.current()));
+    const tick = (_time: number, delta: number) => {
+      if (document.hidden) return;
+      controllers.current.forEach((c) => c.tick());
+      if (active.current) recordFrame("street-video", delta / 1000, 0, 0);
+    };
     paint.current();
-  }, [index, loaded, width, reduced, shot.image, presented]);
-  function jump(next: number) {
-    const p = Math.max(0, Math.min(7, next)) / 8;
+    gsap.ticker.add(tick);
+    return () => {
+      gsap.ticker.remove(tick);
+      controllers.current.forEach((c) => c.dispose());
+      controllers.current = [];
+    };
+  }, [near, compact]);
+  const jump = (index: number) => {
+    const p = index / 8;
     if (reduced) {
       progress.current = p;
-      lastIndex.current = streetFrame(p, true).index;
-      setIndex(lastIndex.current);
+      lastChapter.current = index;
+      setChapter(index);
+      paint.current();
     } else if (root.current)
       scrollTo(
-        window.scrollY +
-          root.current.getBoundingClientRect().top +
-          p * (root.current.offsetHeight - innerHeight),
+        root.current.getBoundingClientRect().top +
+          scrollY +
+          (root.current.offsetHeight - innerHeight) * p,
       );
-  }
-  const error = failed.includes(`${shot.image}-${width}`);
-  const ready = !!stage.current?.querySelector(
-    `img[data-image="${shot.image}"][data-ready="true"]`,
-  );
+  };
   return (
     <>
-      <section id="walk" className="street-film-intro">
+      <section className="street-film-intro" id="walk">
         <span className="eyebrow">05 / TWO STREETS. MANY STORIES.</span>
         <h2>
           Beyond the skyline.
@@ -163,60 +164,59 @@ export function CinematicStreets() {
           <em>Into the streets.</em>
         </h2>
         <p>
-          Flinders Street & Collins Street. An architectural photographic
-          journey through real Melbourne.
+          Melbourne in motion. Travel above the city, then pause at Flinders
+          Street after dark. Collins Street awaits in our architectural
+          notebook.
         </p>
-        <a href="#street-film">
-          Scroll into the city <span aria-hidden="true">↓</span>
+        <a
+          href="#street-film"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollTo("#street-film");
+          }}
+        >
+          Scroll into the city ↓
         </a>
       </section>
       <section
         ref={root}
         id="street-film"
-        className={`street-film ${reduced ? "is-reduced" : ""}`}
-        aria-label="Melbourne streets photographic journey"
+        className={`street-film street-video-film ${reduced ? "is-reduced" : ""}`}
+        aria-label="Melbourne scroll-controlled film"
       >
-        <div ref={stage} className="street-film-stage">
-          <div className="street-film-images" aria-hidden="true">
+        <div ref={stage} className="street-film-stage" data-cursor="film">
+          <div className="street-film-images">
+            <img
+              className="street-film-poster"
+              src={assetUrl(
+                "/assets/streets/video/melbourne-aerial-poster.webp",
+              )}
+              alt="Melbourne skyline from a real aerial film"
+              loading="lazy"
+            />
             {near &&
-              ids.map((id) => {
-                const a = images.find((a) => a.id === id)!;
-                const v = a.variants[width as keyof typeof a.variants];
-                return (
-                  <img
-                    key={`${id}-${width}`}
-                    data-image={id}
-                    className="street-film-photo"
-                    src={assetUrl(v.src)}
-                    width={v.width}
-                    height={v.height}
-                    alt=""
-                    decoding="async"
-                    style={{
-                      objectPosition: streetShots.find((s) => s.image === id)
-                        ?.position,
-                    }}
-                    onLoad={async (e) => {
-                      const image = e.currentTarget;
-                      try {
-                        await image.decode();
-                        if (image.isConnected) {
-                          image.dataset.ready = "true";
-                          setLoaded((v) => v + 1);
-                        }
-                      } catch {
-                        if (image.isConnected)
-                          setFailed((v) => [...v, `${id}-${width}`]);
-                      }
-                    }}
-                    onError={() => setFailed((v) => [...v, `${id}-${width}`])}
-                  />
-                );
-              })}
+              filmClips.map((c, i) => (
+                <video
+                  key={`${c.id}-${compact}`}
+                  ref={(v) => {
+                    videos.current[i] = v;
+                  }}
+                  className="street-film-video"
+                  src={assetUrl(
+                    `/assets/streets/video/${c.id}-${compact ? 1280 : 1920}.mp4`,
+                  )}
+                  muted
+                  playsInline
+                  preload="auto"
+                  disablePictureInPicture
+                  aria-label={`${c.location} — scroll-controlled footage`}
+                  onError={() => setFailed(true)}
+                />
+              ))}
           </div>
           <header className="street-film-header">
             <span>
-              MELB.<small>{shot.street} / Melbourne</small>
+              MELB.<small>{clip.location}</small>
             </span>
             <a
               href="#your-melbourne"
@@ -231,59 +231,62 @@ export function CinematicStreets() {
               Skip journey ↗
             </a>
           </header>
-          {!ready && near && (
+          {near && !ready && (
             <p className="street-film-status" role="status">
-              {error
-                ? "This photograph could not load. The stories and navigation remain available."
-                : "Preparing this view…"}
+              {failed
+                ? "The film could not load. Skip ahead or revisit the architectural notebook."
+                : "Preparing the film…"}
             </p>
           )}
-          <div className="street-film-caption">
-            <span className="eyebrow">{shot.kind}</span>
-            <h2>{shot.title}</h2>
-            <p>{shot.text}</p>
+          <div className="street-film-caption" key={chapter}>
+            <span className="eyebrow">{frame.kind}</span>
+            <h2>{frame.title}</h2>
+            <p>{frame.text}</p>
           </div>
           <footer className="street-film-footer">
             <span className="street-film-count">
-              {String(index + 1).padStart(2, "0")}
+              {String(chapter + 1).padStart(2, "0")}
               <i> / 08</i>
-              <small>{shot.street}</small>
+              <small>
+                {Math.floor(chapter / 4) === 0
+                  ? "THE SKYLINE"
+                  : "FLINDERS STREET"}
+              </small>
             </span>
             <span className="street-film-hint">
-              {reduced ? "CHOOSE A VIEW" : "SCROLL TO EXPLORE"}
-              <small>Real photographs · Directed framing</small>
-              <small>
-                {current.author} · {current.license}
-              </small>
+              {reduced ? "CHOOSE A MOMENT" : "SCROLL TO TRAVEL"}
+              <small>Real footage · Your scroll controls time</small>
+              <small>{clip.author} · Pexels</small>
             </span>
             <div className="street-film-actions">
               {reduced && (
                 <>
                   <button
-                    disabled={index === 0}
-                    onClick={() => jump(index - 1)}
+                    disabled={chapter === 0}
+                    onClick={() => jump(chapter - 1)}
                   >
                     Previous view
                   </button>
                   <button
-                    disabled={index === 7}
-                    onClick={() => jump(index + 1)}
+                    disabled={chapter === 7}
+                    onClick={() => jump(chapter + 1)}
                   >
                     Next view
                   </button>
                 </>
               )}
               <button onClick={() => jump(0)}>Replay ↺</button>
-              <a href="#street-credits">Photo credits</a>
+              <a href="#street-credits">Film & photo credits</a>
             </div>
           </footer>
           <div className="street-film-line" aria-hidden="true" />
+          <output hidden data-testid="film-diagnostics" />
         </div>
       </section>
       <section
         className="street-film-reading"
         id="street-credits"
-        aria-label="Street photography and sources"
+        aria-label="Film and architectural notebook"
       >
         <div>
           <span className="eyebrow">THE CITY, THROUGH A LENS</span>
@@ -293,45 +296,70 @@ export function CinematicStreets() {
             <em>Many perspectives.</em>
           </h3>
           <p>
-            This is a curated photographic essay, with gentle framing and
-            dissolves controlled by your scroll. Views were captured on
-            different dates; transitions are editorial, not a continuous walk or
-            unrestricted 3D exploration.
+            Two real films: a moving aerial followed by a fixed-camera view of
+            Flinders Street’s evening traffic. Scroll forwards or backwards to
+            control time. The change of location is an editorial cut, not a
+            continuous street-level walk.
+          </p>
+          <p>
+            Our Collins Street architectural notebook preserves the original
+            photographs and their stories. A continuous Collins Street tracking
+            film is not yet available in this free collection.
           </p>
           <a href="#your-melbourne">Your Melbourne starts here ↓</a>
         </div>
         <details>
           <summary>Explore the views & photography credits</summary>
-          <ol>
-            {streetShots.map((s, i) => (
-              <li key={i}>
-                <strong>
-                  {s.street} — {s.title}
-                </strong>
-                <p>{s.text}</p>
-              </li>
-            ))}
-          </ol>
-          {images.map((a) => (
-            <p key={a.id}>
-              <a href={a.source} target="_blank" rel="noreferrer">
-                {a.title.replace("File:", "")}
+          {filmClips.map((c) => (
+            <p key={c.id}>
+              <a href={c.source} target="_blank" rel="noreferrer">
+                {c.location}
               </a>{" "}
-              — {a.author}.{" "}
-              <a href={a.licenseUrl} target="_blank" rel="noreferrer">
-                {a.license}
+              — {c.author}.{" "}
+              <a
+                href="https://www.pexels.com/license/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Pexels License
               </a>
-              . Resized WebP; animated framing. Derivatives retain the source
-              licence.
+              . Trimmed, resized, silent, scroll-controlled.
             </p>
           ))}
+          <ol>
+            {streetShots.map((s, i) => {
+              const photo = images.find((a) => a.id === s.image)!;
+              return (
+                <li key={i}>
+                  <strong>
+                    {s.street} — {s.title}
+                  </strong>
+                  <p>{s.text}</p>
+                  <img
+                    src={assetUrl(photo.variants["1920"].src)}
+                    alt={s.text}
+                    loading="lazy"
+                    width="960"
+                    height="640"
+                  />
+                  <p>
+                    <a href={photo.source} target="_blank" rel="noreferrer">
+                      {photo.author}
+                    </a>{" "}
+                    ·{" "}
+                    <a href={photo.licenseUrl} target="_blank" rel="noreferrer">
+                      {photo.license}
+                    </a>
+                    . Resized WebP; source licence retained.
+                  </p>
+                </li>
+              );
+            })}
+          </ol>
           <a href={assetUrl("/assets/streets/ATTRIBUTION.json")} download>
-            Download attribution & source manifest
+            Photography attribution & source manifest
           </a>
         </details>
-        <span className="street-film-current-credit">
-          Current view: {current.author} · {current.license}
-        </span>
       </section>
     </>
   );

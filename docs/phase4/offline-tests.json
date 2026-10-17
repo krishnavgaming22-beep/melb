@@ -1,12 +1,12 @@
 {
-  "date": "2026-10-13",
+  "date": "2026-10-17",
   "checks": [
     "8,008 forward/reverse path samples: deterministic positions, finite targets and continuous chapter tangents",
     "Scroll, direct selection and rapid previous/next share one bounded progress target",
     "Five editorial articles: selectors, university links, practical topics, licensed local photos and map/landmark connections",
     "Archived Phase 4 prototype (not on main website): four viewpoints, modes, reduced motion, looking, quality switch, error recovery, exit and restored focus",
     "Viewpoints lie within the original tile and 1.7 m above sampled high-LOD mesh surfaces; no datum alignment claimed",
-    "Photographic streets: 10,001 deterministic samples, reduced-motion forward/reverse/replay, four-image mount limit, attribution, skip and legacy isolation"
+    "Street film: eight reduced-motion moments, replay/skip, two-video limit, attribution and honest Collins coverage; archived photo timeline remains deterministic"
   ],
   "pathSamples": [
     {

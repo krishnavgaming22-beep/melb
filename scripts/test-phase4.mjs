@@ -24,6 +24,8 @@ Object.defineProperty(globalThis, "navigator", {
   configurable: true,
 });
 globalThis.getComputedStyle = dom.window.getComputedStyle;
+globalThis.requestAnimationFrame = dom.window.requestAnimationFrame = () => 0;
+globalThis.cancelAnimationFrame = dom.window.cancelAnimationFrame = () => {};
 globalThis.innerWidth = 1440;
 globalThis.innerHeight = 900;
 globalThis.matchMedia = dom.window.matchMedia = () => ({
@@ -244,16 +246,16 @@ assert.equal(app.streetFrame(-9).index, 0);
 assert.equal(app.streetFrame(9).index, 7);
 assert.equal(app.streetFrame(NaN).index, 0);
 render(React.createElement(app.CinematicStreets));
-assert(screen.getByRole("heading", { name: "Where the city meets." }));
+assert(screen.getByRole("heading", { name: app.filmChapters[0].title }));
 for (let i = 1; i < 8; i++) {
   fireEvent.click(screen.getByRole("button", { name: "Next view" }));
-  assert(screen.getByRole("heading", { name: app.streetShots[i].title }));
+  assert(screen.getByRole("heading", { name: app.filmChapters[i].title }));
   assert(document.querySelectorAll(".street-film-photo").length <= 4);
 }
 assert(screen.getByRole("button", { name: "Next view" }).disabled);
 for (let i = 6; i >= 0; i--) {
   fireEvent.click(screen.getByRole("button", { name: "Previous view" }));
-  assert(screen.getByRole("heading", { name: app.streetShots[i].title }));
+  assert(screen.getByRole("heading", { name: app.filmChapters[i].title }));
 }
 fireEvent.click(screen.getByRole("button", { name: "Next view" }));
 fireEvent.click(screen.getByRole("button", { name: "Replay ↺" }));
@@ -262,7 +264,9 @@ assert.equal(
   screen.getByRole("link", { name: "Skip journey ↗" }).getAttribute("href"),
   "#your-melbourne",
 );
-assert(screen.getByText(/curated photographic essay/));
+assert(screen.getByText(/Two real films/));
+assert.equal(document.querySelectorAll("video").length, 2);
+assert(screen.getByText(/continuous Collins Street tracking film is not yet available/));
 cleanup();
 assert(!document.body.classList.contains("street-film-active"));
 for (const path of [
@@ -272,13 +276,13 @@ for (const path of [
 ])
   assert(!fs.readFileSync(path, "utf8").includes("StreetExperience/"));
 pass(
-  "Photographic streets: 10,001 deterministic samples, reduced-motion forward/reverse/replay, four-image mount limit, attribution, skip and legacy isolation",
+  "Street film: eight reduced-motion moments, replay/skip, two-video limit, attribution and honest Collins coverage; archived photo timeline remains deterministic",
 );
 fs.writeFileSync(
   "docs/phase4/offline-tests.json",
   JSON.stringify(
     {
-      date: "2026-10-13",
+      date: "2026-10-17",
       checks,
       pathSamples,
       browser:
@@ -289,3 +293,8 @@ fs.writeFileSync(
   ),
 );
 console.log(`${checks.length} Phase 4 groups passed.`);
+// Release GSAP's browser housekeeping interval in the DOM-only runner.
+const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+const { gsap } = await import('gsap');
+ScrollTrigger.disable();
+gsap.ticker.sleep();

@@ -9,6 +9,8 @@ import {
 } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
+gsap.registerPlugin(SplitText);
 import { ThreeScene } from "../../components/three/ThreeScene";
 import { journey } from "../../scenes/ArrivalScene/journey";
 import {
@@ -165,6 +167,36 @@ export function ArrivalExperience() {
         )
         .to(".arrival-stage", { "--ui-color": "#f2efe8", duration: 0.2 }, 0.42);
       arrival.to({}, { duration: 0.02 }, 0.98);
+      if (!reduced) {
+        // Child typography follows the same master scroll timeline as the aircraft.
+        const entries = [
+          [".flight-copy h2", 0.26],
+          [".map-copy h2", 0.56],
+          [".descent-copy h2", 0.88],
+        ] as const;
+        entries.forEach(([selector, time]) => {
+          const el = root.current?.querySelector<HTMLElement>(selector);
+          if (!el) return;
+          const split = SplitText.create(el, { type: "words", mask: "words" });
+          arrival.fromTo(
+            split.words,
+            { yPercent: 105 },
+            {
+              yPercent: 0,
+              duration: 0.055,
+              stagger: 0.008,
+              ease: "power2.out",
+            },
+            time,
+          );
+        });
+        arrival.fromTo(
+          ".flight-copy .eyebrow,.map-copy .eyebrow",
+          { clipPath: "inset(0 100% 0 0)" },
+          { clipPath: "inset(0 0% 0 0)", duration: 0.2 },
+          0.24,
+        );
+      }
       tl.add(arrival.duration(0.58), 0);
       tl.to(".descent-copy", { opacity: 0, duration: 0.035 }, 0.605)
         .fromTo(

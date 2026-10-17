@@ -1,4 +1,4 @@
-import { Diagnostics } from "./components/motion/Diagnostics";
+
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { SmoothScroll } from "./components/motion/SmoothScroll";
@@ -6,6 +6,7 @@ import { PageTransition } from "./components/transitions/PageTransition";
 import { Navigation } from "./components/navigation/Navigation";
 import { Cursor } from "./components/ui/Cursor";
 import { routes } from "./data/chapters";
+const Diagnostics = lazy(() => import("./components/motion/Diagnostics").then(m => ({default:m.Diagnostics})));
 const Home = lazy(() => import("./pages/Home/Home"));
 const FuturePage = lazy(() => import("./pages/FuturePage"));
 const legacyTargets: Record<string, string> = {
@@ -40,7 +41,7 @@ export default function App() {
           </PageTransition>
         </main>
         <Cursor />
-        {import.meta.env.DEV && <Diagnostics />}
+        {(import.meta.env.DEV || new URLSearchParams(location.search).has("bench")) && <Suspense fallback={null}><Diagnostics /></Suspense>}
       </SmoothScroll>
     </BrowserRouter>
   );

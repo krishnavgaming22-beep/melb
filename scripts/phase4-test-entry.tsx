@@ -11,3 +11,5 @@ export {
 
 export { CinematicStreets } from "../src/scenes/CinematicStreets/CinematicStreets";
 export * from "../src/scenes/CinematicStreets/timeline";
+
+export * from "../src/scenes/CinematicStreets/videoTimeline";

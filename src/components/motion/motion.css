@@ -1,0 +1,63 @@
+/* Only movement and interaction; established dimensions, fonts and palette stay in editorial.css. */
+.motion-line-mask {
+  overflow: clip;
+  overflow-clip-margin: 0.12em;
+}
+.motion-word {
+  transform-origin: 50% 100%;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .editorial-actions a,
+  .editorial-actions button,
+  .next-path > a,
+  .intro-bottom a,
+  .article-nav a {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition:
+      background-size 0.25s ease,
+      color 0.2s ease;
+  }
+  .editorial-actions a:hover,
+  .editorial-actions button:hover,
+  .next-path > a:hover,
+  .intro-bottom a:hover,
+  .article-nav a:hover {
+    background-size: 100% 1px;
+  }
+  .editorial-tabs button {
+    transition:
+      background-color 0.2s,
+      color 0.2s,
+      translate 0.2s;
+  }
+  .editorial-tabs button:hover {
+    translate: 0 -2px;
+  }
+  .next-path .photo-window {
+    transition: translate 0.35s ease;
+  }
+  .next-path:hover .photo-window {
+    translate: 0 -4px;
+  }
+}
+@media (max-width: 699px) {
+  .menu-panel {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+  }
+  .menu-panel nav a {
+    min-height: 44px;
+  }
+  .editorial-journey {
+    overflow-x: clip;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-word {
+    transform: none !important;
+  }
+}

@@ -100,7 +100,9 @@ export function CinematicStreets() {
       scrollTrigger: {
         id: "street-video",
         trigger: root.current,
-        start: "top top",
+        // Include the exact opening frame so the surrounding navigation yields
+        // even when the visitor enters through the introductory link or Replay.
+        start: "top 1px",
         end: "bottom bottom",
         scrub: 0.18,
         invalidateOnRefresh: true,
@@ -172,7 +174,7 @@ export function CinematicStreets() {
           href="#street-film"
           onClick={(e) => {
             e.preventDefault();
-            scrollTo("#street-film");
+            jump(0);
           }}
         >
           Scroll into the city ↓

@@ -59,4 +59,19 @@ Real OrbitControls tested under synthetic pointer events for MCG, Flinders, Fede
 - Existing discovery, landmark and editorial regression groups retained.
 - New tests cover 10,001 film progress samples, caption boundaries, forward/reverse seeks, latest-target coalescing, decoder readiness, idle behaviour, end-frame clamp, media cleanup, four-landmark pointer controls and local licensed media variants.
 - Local browser navigation to the exact requested localhost was rejected by a saved user permission. User was asked to clear it; no alternate origin/browser/CDP workaround used.
-- Desktop comparison, live decoder performance, WebGL visual interactions, phone and reduced-motion browser checks must be recorded below when actually performed. Do not equate unit tests with these checks or claim the full Phase 5 creative target achieved.
+- Public deployment tested in Codex’s Chromium-based browser on the current machine after the user explicitly chose public verification.
+
+### Public browser verification — 17 October 2026
+
+- Desktop: 1920×1080 and 1440×900 screenshots captured. At 1920, 24 selected header/article/heading/photo/card/footer boxes retain identical x, width, height, font and colour compared with the pre-change baseline. The sport composition was visually reviewed at both sizes. This is sampled regression evidence, not a pixel-perfect comparison of every scroll frame.
+- Film: forward seek to 5.985 seconds, reverse to 3.102 seconds, fast forward across the edit to Flinders at 7.817 seconds. Idle held the same frame and seek count. Replay returned to 0.012 seconds. Skip moved focus to the next chapter. The introductory entrance was then corrected to align the film with the viewport top, without the normal anchor navigation offset.
+- Performance sample: 77 completed seeks, mean 11 ms, maximum 39 ms. A rolling 600-frame sample reported 30 fps, 33 ms median / 34 ms p95, no frames over 50 ms. An earlier short sample was approximately 59 fps. Browser scheduling and machine load affect these figures; this is not a guaranteed 60 fps claim or an isolated GPU benchmark. Raw snapshot: `docs/phase5/live-film-metrics.json`.
+- MCG: visually checked horizontal drag and upward drag, including the raised viewpoint and stable framing. Flinders zoom worked; Federation Square and Shrine loaded after switching. All four use the same canvas. Exhaustive directions, rapid input and limits for all four are additionally covered by the real OrbitControls offline tests.
+- Phone foundation: 390×844, zero horizontal overflow; both 1280-pixel video variants loaded at readyState 4. Landscape footage retains its aspect ratio. This was viewport testing, not a physical iPhone/Android or pinch-gesture certification.
+- Console warnings/errors: none in the sampled public session. One canvas, one Lenis owner and 60 ScrollTriggers remained after repeated film entry and landmark switching.
+- Reduced-motion branches were reviewed and existing offline checks passed. System-level reduced-motion browser emulation was not available through this browser control; that specific visual acceptance check remains unverified.
+- `npm test`: all 26 groups passed. TypeScript and Vite production build passed. The existing large Three.js chunk warning remains.
+
+### Delivery status
+
+The implemented motion, real-film prototype, camera fixes and mobile foundation are published. This is **not full creative acceptance of the requested two-street travelling experience**: continuous Collins Street footage and a travelling Flinders ground-level shot remain missing. The site explicitly identifies the aerial-to-fixed-camera edit and preserves Collins photography with its licences. No paid asset or API was introduced.

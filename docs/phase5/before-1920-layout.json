@@ -1,0 +1,198 @@
+{
+  "height": 1080,
+  "items": [
+    {
+      "color": "rgb(35, 59, 64)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 94,
+      "key": "site-header ",
+      "w": 1920,
+      "x": 0
+    },
+    {
+      "color": "rgb(35, 59, 64)",
+      "font": "Georgia, serif",
+      "h": 294,
+      "key": "editorial-heading",
+      "w": 1000,
+      "x": 110
+    },
+    {
+      "color": "rgb(35, 59, 64)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 1529.609375,
+      "key": "sport",
+      "w": 1920,
+      "x": 0
+    },
+    {
+      "color": "rgb(35, 59, 64)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 253.65625,
+      "key": "editorial-heading",
+      "w": 1000,
+      "x": 110
+    },
+    {
+      "color": "rgb(35, 59, 64)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 706.5546875,
+      "key": "photo-window",
+      "w": 942.078125,
+      "x": 110
+    },
+    {
+      "color": "rgb(35, 59, 64)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 1546.8828125,
+      "key": "culture",
+      "w": 1920,
+      "x": 0
+    },
+    {
+      "color": "rgb(35, 59, 64)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 253.65625,
+      "key": "editorial-heading",
+      "w": 1000,
+      "x": 110
+    },
+    {
+      "color": "rgb(35, 59, 64)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 695.828125,
+      "key": "photo-window",
+      "w": 927.7734375,
+      "x": 882.2265625
+    },
+    {
+      "color": "rgb(35, 59, 64)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 2112.546875,
+      "key": "education",
+      "w": 1920,
+      "x": 0
+    },
+    {
+      "color": "rgb(35, 59, 64)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 253.65625,
+      "key": "editorial-heading",
+      "w": 1000,
+      "x": 110
+    },
+    {
+      "color": "rgb(35, 59, 64)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 978.4921875,
+      "key": "photo-window",
+      "w": 782.796875,
+      "x": 110
+    },
+    {
+      "color": "rgb(35, 59, 64)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 1568.8046875,
+      "key": "lifestyle",
+      "w": 1920,
+      "x": 0
+    },
+    {
+      "color": "rgb(35, 59, 64)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 253.65625,
+      "key": "editorial-heading",
+      "w": 1000,
+      "x": 110
+    },
+    {
+      "color": "rgb(35, 59, 64)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 726.75,
+      "key": "photo-window",
+      "w": 969,
+      "x": 110
+    },
+    {
+      "color": "rgb(240, 239, 228)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 1814.9375,
+      "key": "quality-of-life",
+      "w": 1920,
+      "x": 0
+    },
+    {
+      "color": "rgb(240, 239, 228)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 363.8125,
+      "key": "editorial-heading",
+      "w": 1000,
+      "x": 110
+    },
+    {
+      "color": "rgb(240, 239, 228)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 1043.7265625,
+      "key": "photo-window",
+      "w": 782.796875,
+      "x": 110
+    },
+    {
+      "color": "rgb(35, 59, 64)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 715.8984375,
+      "key": "next-path",
+      "w": 545.328125,
+      "x": 110
+    },
+    {
+      "color": "rgb(35, 59, 64)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 408.9921875,
+      "key": "photo-window",
+      "w": 545.328125,
+      "x": 110
+    },
+    {
+      "color": "rgb(35, 59, 64)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 715.8984375,
+      "key": "next-path",
+      "w": 545.3359375,
+      "x": 687.328125
+    },
+    {
+      "color": "rgb(35, 59, 64)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 409,
+      "key": "photo-window",
+      "w": 545.3359375,
+      "x": 687.328125
+    },
+    {
+      "color": "rgb(35, 59, 64)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 715.8984375,
+      "key": "next-path",
+      "w": 545.328125,
+      "x": 1264.6640625
+    },
+    {
+      "color": "rgb(35, 59, 64)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 408.9921875,
+      "key": "photo-window",
+      "w": 545.328125,
+      "x": 1264.6640625
+    },
+    {
+      "color": "rgb(35, 59, 64)",
+      "font": "Arial, Helvetica, sans-serif",
+      "h": 123.5,
+      "key": "city-end",
+      "w": 1920,
+      "x": 0
+    }
+  ],
+  "width": 1920
+}

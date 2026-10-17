@@ -1,0 +1,22 @@
+{
+  "diagnostics": {
+    "canvases": "1",
+    "drawCalls": "0",
+    "fps": "60",
+    "frameReport": "{\"street-video\":{\"samples\":600,\"averageFps\":30,\"p50ms\":33,\"p95ms\":35,\"longFramesOver50ms\":0,\"lastDrawCalls\":0,\"lastTriangles\":0}}",
+    "lenis": "true",
+    "progress": "1.0000",
+    "rendered": "0.0000",
+    "triangles": "0",
+    "triggers": "60"
+  },
+  "film": {
+    "clip": "1",
+    "maxSeekMs": "39",
+    "meanSeekMs": "11",
+    "seeks": "77",
+    "target": "7.822",
+    "testid": "film-diagnostics",
+    "time": "7.817"
+  }
+}

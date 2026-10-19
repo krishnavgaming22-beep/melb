@@ -31,7 +31,7 @@ const stops = [
   ["Arrive", 0],
   ["Australia", 0.39],
   ["Melbourne", 0.71],
-  ["Explore", 0.97],
+  ["Explore", 0.995],
 ] as const;
 export function ArrivalExperience() {
   const explorer = useExplorer();
@@ -316,7 +316,7 @@ export function ArrivalExperience() {
         setDiscoveryPhase(1);
         selectPlace(id, { width: innerWidth, height: innerHeight });
       }
-      jump(0.985);
+      jump(0.995);
     };
     window.addEventListener("melb:discover-place", discover);
     return () => window.removeEventListener("melb:discover-place", discover);

@@ -20,6 +20,10 @@ export function CityOverture() {
       { wide: "(min-width: 900px)", small: "(max-width: 899px)" },
       (context) => {
         const wide = !!context.conditions?.wide;
+        // Set every staggered layer before the timeline starts; later stagger
+        // children otherwise retain their natural layout until their own start.
+        gsap.set(".overture-title span", { yPercent: 115 });
+        if (wide) gsap.set(".overture-card", { yPercent: 150, rotation: 12 });
         const tl = gsap.timeline({
           defaults: { ease: "none" },
           scrollTrigger: {
@@ -226,7 +230,7 @@ export function LandmarkPassage() {
             );
             tl.fromTo(
               panel.querySelector("h3"),
-              { yPercent: 80 },
+              { yPercent: i === 0 ? 0 : 80 },
               { yPercent: 0, duration: 0.12 },
               i * 0.22,
             );
@@ -283,19 +287,21 @@ export function LandmarkPassage() {
                   <span className="eyebrow">
                     0{i + 1} / {p.categories.join(" + ")}
                   </span>
-                  <h3>
-                    {p.short}
-                    <em>
-                      {
-                        [
-                          "Together, louder.",
-                          "Under the clocks.",
-                          "Room for ideas.",
-                          "A moment of quiet.",
-                        ][i]
-                      }
-                    </em>
-                  </h3>
+                  <div className="passage-title-mask">
+                    <h3>
+                      {p.short}
+                      <em>
+                        {
+                          [
+                            "Together, louder.",
+                            "Under the clocks.",
+                            "Room for ideas.",
+                            "A moment of quiet.",
+                          ][i]
+                        }
+                      </em>
+                    </h3>
+                  </div>
                   <p>{p.intro}</p>
                   <button
                     data-cursor="EXPLORE"

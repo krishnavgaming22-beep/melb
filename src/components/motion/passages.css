@@ -374,3 +374,11 @@
     padding-top: 100px;
   }
 }
+
+.passage-title-mask {
+  overflow: hidden;
+  margin: 24px 0;
+}
+.passage-title-mask h3 {
+  margin: 0;
+}

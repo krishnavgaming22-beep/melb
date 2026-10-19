@@ -42,6 +42,8 @@ globalThis.IntersectionObserver = class {
   }
   disconnect() {}
 };
+dom.window.HTMLMediaElement.prototype.pause = function () {};
+dom.window.HTMLMediaElement.prototype.load = function () {};
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 await build({
   entryPoints: ["scripts/phase4-test-entry.tsx"],
@@ -245,28 +247,66 @@ for (let i = 0; i <= 10000; i++) {
 assert.equal(app.streetFrame(-9).index, 0);
 assert.equal(app.streetFrame(9).index, 7);
 assert.equal(app.streetFrame(NaN).index, 0);
-render(React.createElement(app.CinematicStreets));
+// Model decoder readiness explicitly: captions must wait for a decoded target.
+render(
+  React.createElement(
+    React.StrictMode,
+    null,
+    React.createElement(app.CinematicStreets),
+  ),
+);
+function decodeTarget() {
+  const select = document.querySelector(".film-scene-picker select");
+  const output = document.querySelector('[data-testid="film-diagnostics"]');
+  const target = Number(output.dataset.target);
+  act(() => {
+    for (const video of document.querySelectorAll("video")) {
+      Object.defineProperty(video, "readyState", {
+        value: 2,
+        configurable: true,
+      });
+      video.currentTime = target;
+      video.dispatchEvent(new Event("loadeddata"));
+    }
+  });
+  assert(document.querySelectorAll("video").length <= 3);
+  assert(
+    [...document.querySelectorAll("video")].every((v) => v.getAttribute("src")),
+    "StrictMode keeps live sources",
+  );
+}
+decodeTarget();
 assert(screen.getByRole("heading", { name: app.filmChapters[0].title }));
-for (let i = 1; i < 8; i++) {
-  fireEvent.click(screen.getByRole("button", { name: "Next view" }));
-  assert(screen.getByRole("heading", { name: app.filmChapters[i].title }));
-  assert(document.querySelectorAll(".street-film-photo").length <= 4);
-}
-assert(screen.getByRole("button", { name: "Next view" }).disabled);
-for (let i = 6; i >= 0; i--) {
-  fireEvent.click(screen.getByRole("button", { name: "Previous view" }));
+for (let i = 1; i < app.filmChapters.length; i++) {
+  fireEvent.click(screen.getByRole("button", { name: "Next film scene" }));
+  decodeTarget();
   assert(screen.getByRole("heading", { name: app.filmChapters[i].title }));
 }
-fireEvent.click(screen.getByRole("button", { name: "Next view" }));
+assert(screen.getByRole("button", { name: "Next film scene" }).disabled);
+for (let i = app.filmChapters.length - 2; i >= 0; i--) {
+  fireEvent.click(screen.getByRole("button", { name: "Previous film scene" }));
+  decodeTarget();
+  assert(screen.getByRole("heading", { name: app.filmChapters[i].title }));
+}
+fireEvent.change(
+  screen.getByRole("combobox", { name: "Choose a film scene" }),
+  { target: { value: "19" } },
+);
+decodeTarget();
+assert(screen.getByRole("heading", { name: app.filmChapters[19].title }));
 fireEvent.click(screen.getByRole("button", { name: "Replay ↺" }));
-assert(screen.getByRole("button", { name: "Previous view" }).disabled);
+decodeTarget();
+assert(screen.getByRole("button", { name: "Previous film scene" }).disabled);
 assert.equal(
   screen.getByRole("link", { name: "Skip journey ↗" }).getAttribute("href"),
   "#your-melbourne",
 );
-assert(screen.getByText(/Two real films/));
-assert.equal(document.querySelectorAll("video").length, 2);
-assert(screen.getByText(/continuous Collins Street tracking film is not yet available/));
+assert(screen.getByText(/Twenty moments, eleven real films/));
+assert(
+  screen.getByText(
+    /continuous Collins Street tracking film is not yet available/,
+  ),
+);
 cleanup();
 assert(!document.body.classList.contains("street-film-active"));
 for (const path of [
@@ -276,17 +316,17 @@ for (const path of [
 ])
   assert(!fs.readFileSync(path, "utf8").includes("StreetExperience/"));
 pass(
-  "Street film: eight reduced-motion moments, replay/skip, two-video limit, attribution and honest Collins coverage; archived photo timeline remains deterministic",
+  "Street film: twenty decoded reduced-motion moments, reverse, direct jumps, replay/skip, StrictMode source retention, three-video limit, attribution and honest Collins coverage",
 );
 fs.writeFileSync(
   "docs/phase4/offline-tests.json",
   JSON.stringify(
     {
-      date: "2026-10-17",
+      date: "2026-10-19",
       checks,
       pathSamples,
       browser:
-        "Blocked by browser URL security policy; no FPS, responsive layout or live WebGL claims",
+        "Offline tests only. Public deployment browser evidence is tracked separately in docs/PHASE_4_2.md.",
     },
     null,
     2,
@@ -294,7 +334,7 @@ fs.writeFileSync(
 );
 console.log(`${checks.length} Phase 4 groups passed.`);
 // Release GSAP's browser housekeeping interval in the DOM-only runner.
-const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-const { gsap } = await import('gsap');
+const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+const { gsap } = await import("gsap");
 ScrollTrigger.disable();
 gsap.ticker.sleep();

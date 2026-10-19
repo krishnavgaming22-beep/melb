@@ -319,9 +319,9 @@ body.street-film-active .article-nav {
   visibility: hidden;
   pointer-events: none;
 }
-/* Phase 5: two continuous films, a single scroll owner and no still-image motion. */
+/* A bounded film collection, driven by the shared scroll clock. */
 .street-video-film {
-  height: 650svh;
+  height: 1500svh;
 }
 .street-film-video,
 .street-film-poster {
@@ -333,11 +333,11 @@ body.street-film-active .article-nav {
 }
 .street-film-video {
   opacity: 0;
-  transition: opacity 0.28s ease;
+  transition: none;
 }
 .street-video-film .street-film-caption {
   pointer-events: none;
-  animation: film-caption 0.45s ease both;
+  animation: none;
 }
 .street-film-reading details img {
   display: block;
@@ -345,19 +345,9 @@ body.street-film-active .article-nav {
   height: auto;
   margin-block: 18px;
 }
-@keyframes film-caption {
-  from {
-    clip-path: inset(0 0 100% 0);
-    translate: 0 12px;
-  }
-  to {
-    clip-path: inset(0);
-    translate: 0 0;
-  }
-}
 @media (max-width: 699px) {
   .street-video-film {
-    height: 450svh;
+    height: 1200svh;
   }
   .street-video-film .street-film-images {
     top: 17%;
@@ -377,5 +367,81 @@ body.street-film-active .article-nav {
   }
   .street-video-film .street-film-caption {
     animation: none;
+  }
+}
+
+.film-title-mask {
+  overflow: hidden;
+  padding-bottom: 5px;
+}
+.film-title-mask h2 {
+  transform: translateY(var(--caption-y, 0px));
+}
+.street-film-caption p {
+  opacity: var(--caption-opacity, 1);
+}
+.film-scene-picker {
+  display: block;
+  margin-top: 8px;
+}
+.film-scene-picker select {
+  width: 190px;
+  max-width: 33vw;
+  background: #15272bdd;
+  color: #faf5e9;
+  border: 1px solid #faf5e944;
+  border-radius: 4px;
+  padding: 9px;
+  font-size: 10px;
+  cursor: pointer;
+}
+.film-scene-picker option {
+  background: #15272b;
+  color: #faf5e9;
+}
+.street-film-stage.is-portrait-film {
+  background: #243c40;
+}
+.street-film-stage.is-portrait-film .street-film-images {
+  left: 44%;
+  top: 11%;
+  bottom: 11%;
+  right: 5%;
+}
+.street-film-stage.is-portrait-film .street-film-caption {
+  max-width: 34vw;
+  bottom: 35%;
+}
+.film-portrait {
+  object-fit: contain !important;
+}
+.street-film-stage.is-portrait-film::after {
+  background: linear-gradient(0deg, #15272b88, transparent 35%);
+}
+@media (max-width: 699px) {
+  .film-scene-picker select {
+    width: 140px;
+    max-width: 40vw;
+    font-size: 8px;
+  }
+  .street-film-actions {
+    max-width: 52%;
+    gap: 14px;
+  }
+  .street-film-stage.is-portrait-film .street-film-images {
+    inset: 13% 10% 35%;
+  }
+  .street-film-stage.is-portrait-film .street-film-caption {
+    max-width: 86vw;
+    bottom: 140px;
+  }
+  .street-film-actions button {
+    min-width: 26px;
+  }
+  .street-film-caption h2 {
+    font-size: 32px;
+  }
+  .street-film-footer {
+    bottom: 20px;
   }
 }

@@ -61,3 +61,9 @@
     transform: none !important;
   }
 }
+.arrival-letter{display:inline-block;will-change:transform}
+.cursor{display:grid;place-items:center;font:8px Arial,sans-serif;letter-spacing:.08em;color:#916c3d;white-space:nowrap}
+.cursor.is-active{width:60px;height:60px;background:#f3f0e812;backdrop-filter:blur(2px)}
+.motion-preference{border:1px solid currentColor;background:transparent;color:inherit;padding:12px 20px;border-radius:999px;align-self:start;margin:24px 0;cursor:pointer}
+html[data-motion="reduced"] .street-film-video,html[data-motion="reduced"] .street-film-caption,html[data-motion="reduced"] .editorial-photo img{animation:none!important;transition:none!important}
+html[data-motion="reduced"] .cursor{display:none}

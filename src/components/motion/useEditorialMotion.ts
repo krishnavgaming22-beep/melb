@@ -44,20 +44,28 @@ export function imageReveal(el: HTMLElement, compact = false) {
     scrollTrigger: {
       trigger: el,
       start: "top 96%",
-      end: "top 43%",
+      end: "top 15%",
       scrub: true,
     },
   });
   tl.fromTo(
     el,
-    { clipPath: "inset(14% 6% 14% 6%)" },
-    { clipPath: "inset(0% 0% 0% 0%)", duration: 1, ease: "power2.out" },
+    {
+      clipPath: compact
+        ? "inset(8% 3% 8% 3% round 16px)"
+        : "inset(22% 16% 22% 16% round 100px)",
+    },
+    {
+      clipPath: "inset(0% 0% 0% 0% round 0px)",
+      duration: 1,
+      ease: "power2.out",
+    },
     0,
   );
   if (image)
     tl.fromTo(
       image,
-      { scale: compact ? 1.035 : 1.08, yPercent: compact ? 0 : 3 },
+      { scale: compact ? 1.06 : 1.24, yPercent: compact ? 0 : 8 },
       { scale: 1, yPercent: 0, duration: 1, ease: "none" },
       0,
     );
@@ -100,7 +108,7 @@ export function useEditorialMotion(root: RefObject<HTMLDivElement | null>) {
           .forEach((el) => imageReveal(el, compact));
         host
           .querySelectorAll<HTMLElement>(
-            ".eyebrow,figcaption,.intro-coordinate,.editorial-deck,.intro-bottom,.editorial-columns p,.editorial-note",
+            ".editorial-article .eyebrow,.editorial-article figcaption,.editorial-deck,.editorial-columns p,.editorial-note",
           )
           .forEach((el) => {
             if (!el.closest(".street-film,.street-film-reading"))
@@ -123,6 +131,63 @@ export function useEditorialMotion(root: RefObject<HTMLDivElement | null>) {
             },
           ),
         );
+        if (!compact) {
+          host
+            .querySelectorAll<HTMLElement>(
+              ".editorial-article > .editorial-heading",
+            )
+            .forEach((heading, i) => {
+              gsap.fromTo(
+                heading,
+                { xPercent: i % 2 ? 9 : -7 },
+                {
+                  xPercent: 0,
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: heading,
+                    start: "top bottom",
+                    end: "top 18%",
+                    scrub: true,
+                  },
+                },
+              );
+            });
+          host
+            .querySelectorAll<HTMLElement>(
+              ".place-story-copy,.education-copy,.belonging-grid > div",
+            )
+            .forEach((el) => {
+              gsap.fromTo(
+                el,
+                { y: 100 },
+                {
+                  y: 0,
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: el,
+                    start: "top bottom",
+                    end: "top 25%",
+                    scrub: true,
+                  },
+                },
+              );
+            });
+          gsap.fromTo(
+            host.querySelector(".your-melbourne > h2"),
+            { xPercent: 14, scale: 0.8, transformOrigin: "left center" },
+            {
+              xPercent: 0,
+              scale: 1,
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".your-melbourne",
+                start: "top bottom",
+                end: "top 15%",
+                scrub: true,
+              },
+            },
+          );
+        }
         // A full-width reveal into the existing dark-green composition, no extra pin.
         const belong = host.querySelector(".belonging-article");
         if (belong && !compact)

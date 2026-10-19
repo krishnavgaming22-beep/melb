@@ -12,13 +12,21 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
   const reduced = useReducedMotion();
   useEffect(() => {
     if (reduced) return;
-    const l = new Lenis({ lerp: 0.11, smoothWheel: true, syncTouch: false });
+    const l = new Lenis({
+      lerp: 0.14,
+      smoothWheel: true,
+      syncTouch: false,
+      autoRaf: false,
+    });
     lenis.current = l;
     l.on("scroll", ScrollTrigger.update);
     const tick = (t: number) => l.raf(t * 1000);
     gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
     const locks = new Set<string>();
+    if (document.querySelector(".site-header.menu-open"))
+      locks.add("melb:menu-active");
+    if (document.body.style.overflow === "hidden") l.stop();
     const landmark = (event: Event) => {
       (event as CustomEvent<boolean>).detail
         ? locks.add(event.type)

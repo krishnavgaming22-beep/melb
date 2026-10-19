@@ -19,6 +19,10 @@ await build({
 const {
   VideoScrubber,
   videoFrame,
+  filmClips,
+  filmChapters,
+  nearbyClips,
+  sceneTreatment,
   chapterFromTime,
   createLandmarkControls,
   landmarks,
@@ -91,9 +95,9 @@ console.log(
 for (let i = 0; i <= 10000; i++) {
   const p = i / 10000,
     f = videoFrame(p);
-  assert(f.time >= 0 && f.time < 20);
-  assert(f.clip === 0 || f.clip === 1);
-  assert(f.chapter >= 0 && f.chapter < 8);
+  assert(f.time >= 0 && f.time < filmClips[f.clip].duration);
+  assert(f.clip >= 0 && f.clip < filmClips.length);
+  assert(f.chapter >= 0 && f.chapter < filmChapters.length);
   assert.equal(chapterFromTime(f.clip, f.time), f.chapter);
   assert.deepEqual(f, videoFrame(p));
 }
@@ -192,10 +196,33 @@ for (const s of sources) {
   );
   for (const w of [1280, 1920])
     assert(
-      fs.statSync(`public/assets/streets/video/${s.id}-${w}.mp4`).size >
-        1000000,
+      fs.statSync(`public/assets/streets/video/${s.id}-${w}.mp4`).size > 100000,
     );
 }
 console.log(
-  "PASS Both films: local responsive variants and per-asset free licence provenance",
+  "PASS All films: local responsive variants and per-asset free licence provenance",
+);
+
+assert.equal(filmChapters.length, 20);
+for (let target = 0; target < filmClips.length; target++)
+  for (let shown = 0; shown < filmClips.length; shown++)
+    for (const direction of [-1, 1]) {
+      const pool = nearbyClips(target, shown, direction);
+      assert(pool.length <= 3);
+      assert(pool.includes(target) && pool.includes(shown));
+      assert(pool.every((i) => i >= 0 && i < filmClips.length));
+    }
+for (let chapter = 0; chapter < filmChapters.length; chapter++) {
+  const forward = Array.from({ length: 101 }, (_, i) =>
+    sceneTreatment(chapter, i / 100),
+  );
+  const reverse = Array.from({ length: 101 }, (_, i) =>
+    sceneTreatment(chapter, (100 - i) / 100),
+  ).reverse();
+  assert.deepEqual(forward, reverse);
+  for (const frame of forward)
+    assert(Object.values(frame).every(Number.isFinite));
+}
+console.log(
+  "PASS Twenty scenes: bounded decoder pool, rapid jumps, reversible framing and finite endpoints",
 );

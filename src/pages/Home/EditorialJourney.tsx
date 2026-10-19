@@ -1,3 +1,4 @@
+import { CityOverture, LandmarkPassage } from "../../components/motion/CityPassages";
 import { useLayoutEffect, useRef, useState } from "react";
 import { useEditorialMotion } from "../../components/motion/useEditorialMotion";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -148,21 +149,7 @@ export function EditorialJourney() {
   useEditorialMotion(root);
   return (
     <div ref={root} className="editorial-journey">
-      <section id="why-melbourne" className="editorial-intro">
-        <span className="eyebrow">04 / THE MELBOURNE STORIES</span>
-        <h2 className="editorial-heading">
-          More than
-          <br />a <em>destination.</em>
-        </h2>
-        <div className="intro-bottom">
-          <p>
-            A city to discover.
-            <br />A place to learn, live and belong.
-          </p>
-          <a href="#sport">Find your Melbourne ↓</a>
-        </div>
-        <span className="intro-coordinate">37.8136° S / 144.9631° E</span>
-      </section>
+      <CityOverture />
       <nav className="article-nav" aria-label="Melbourne stories">
         <button
           onClick={() =>
@@ -247,6 +234,7 @@ export function EditorialJourney() {
           </p>
         </div>
       </article>
+      <LandmarkPassage />
       <article id="education" className="editorial-article education-article">
         <header className="editorial-heading">
           <span className="eyebrow">03 / EDUCATION</span>

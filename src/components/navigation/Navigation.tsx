@@ -1,7 +1,12 @@
+import {
+  useReducedMotion,
+  setMotionPreference,
+} from "../../hooks/useReducedMotion";
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { mainJourney } from "../../data/chapters";
 export function Navigation() {
+  const reduced = useReducedMotion();
   const [open, setOpen] = useState(false);
   const button = useRef<HTMLButtonElement>(null);
   const panel = useRef<HTMLDivElement>(null);
@@ -19,7 +24,7 @@ export function Navigation() {
         button.current?.focus();
       }
       if (e.key === "Tab") {
-        const links = panel.current?.querySelectorAll<HTMLAnchorElement>("a");
+        const links = panel.current?.querySelectorAll<HTMLElement>("a,button");
         if (!links) return;
         const first = links[0],
           last = links[links.length - 1];
@@ -94,6 +99,13 @@ export function Navigation() {
               </Link>
             ))}
           </nav>
+          <button
+            className="motion-preference"
+            aria-pressed={reduced}
+            onClick={() => setMotionPreference(!reduced)}
+          >
+            Reduced motion: {reduced ? "on" : "off"}
+          </button>
           <span className="menu-foot">
             A different perspective on Melbourne.
           </span>

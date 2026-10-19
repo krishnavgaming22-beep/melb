@@ -29,6 +29,7 @@ export function Cursor() {
           : control
             ? "link"
             : "";
+        ref.current.textContent = native ? "" : target?.closest("[data-cursor]")?.getAttribute("data-cursor")?.toUpperCase() === "FILM" ? "SCROLL" : target?.closest("[data-cursor]")?.getAttribute("data-cursor") ?? (control ? "VIEW" : "");
       }
     };
     const hide = () => {

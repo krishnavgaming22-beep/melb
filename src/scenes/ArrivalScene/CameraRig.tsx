@@ -41,6 +41,11 @@ export function CameraRig({
     flightPath.getPoint(flightTime(p), v.plane);
     const reveal = smooth(0.03, 0.2, p);
     v.offset.set(9 - reveal * 3, 5.3 + reveal * 1.3, 14 - reveal * 5);
+    // A continuous chase arc: the aircraft path and Melbourne destination stay fixed.
+    const arc = reduced ? 0 : Math.sin(smooth(0.13,0.62,p)*Math.PI) * (1-smooth(.5,.68,p));
+    v.offset.x += arc * (mobile ? 1.2 : 3.2);
+    v.offset.y -= arc * 1.3;
+    v.offset.z -= arc * 2;
     if (mobile) v.offset.multiplyScalar(1.48);
     v.pos.copy(v.plane).add(v.offset);
     v.target.copy(v.plane).add(v.look.set(0, 0.6, -0.6));
@@ -69,7 +74,7 @@ export function CameraRig({
     const global = journey.rendered;
     const cityBlend = smooth(0.55, 0.7, global);
     const { lift: flat, mapInteraction: mapBlend } = cityTransition(global);
-    const drift = reduced ? 0 : smooth(0.69, 0.79, global) * 3;
+    const drift = reduced ? 0 : smooth(0.66, 0.81, global) * 12;
     v.view.lerp(
       v.offset.set(mapView.x, mapView.z, mapView.zoom),
       reduced ? 1 : 1 - Math.exp(-5 * Math.min(delta, 0.05)),
@@ -84,7 +89,7 @@ export function CameraRig({
     v.city.set(
       MELBOURNE.x + 24 - drift,
       MELBOURNE.y + (mobile ? 58 : 34),
-      MELBOURNE.z + (mobile ? 55 : 38),
+      MELBOURNE.z + (mobile ? 55 : 38) + drift * .45,
     );
     v.city.lerp(
       v.map.set(MELBOURNE.x, -3.94 + overheadHeight, MELBOURNE.z),
@@ -111,7 +116,7 @@ export function CameraRig({
     camera.up.set(0, 1 - flat, -flat).normalize();
     camera.lookAt(v.target);
     const cam = camera as PerspectiveCamera;
-    const aerialFov = shot.heroFov + map * 3 - descent * 4 + cityBlend;
+    const aerialFov = shot.heroFov - arc * 4 + map * 3 - descent * 4 + cityBlend;
     const fov = aerialFov * (1 - flat) + 28 * flat;
     if (Math.abs(cam.fov - fov) > 0.01) {
       cam.fov = fov;

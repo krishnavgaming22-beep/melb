@@ -41,15 +41,15 @@ export function CloudSystem({
     [mobile],
   );
   textures.forEach((t) => (t.colorSpace = SRGBColorSpace));
-  useFrame(({ camera, clock }) => {
+  useFrame(({ camera }) => {
     group.current?.children.forEach((obj, i) => {
       const mesh = obj as Mesh;
       const s = specs[i];
       mesh.quaternion.copy(camera.quaternion);
       mesh.position.x =
         s[0] +
-        arrivalProgress() * (i % 2 ? -4 : 3) +
-        (reduced ? 0 : Math.sin(clock.elapsedTime * 0.02 + i) * 0.35);
+        arrivalProgress() * (i % 2 ? -7 : 5) +
+        (reduced ? 0 : Math.sin(arrivalProgress() * 2 + i) * 0.7);
       const exit = 0.48 + (i % 3) * 0.07;
       (mesh.material as MeshBasicMaterial).opacity =
         (1 - smooth(exit, exit + 0.19, arrivalProgress())) *

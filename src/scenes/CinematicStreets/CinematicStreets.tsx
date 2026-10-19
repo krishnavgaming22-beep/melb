@@ -1,4 +1,10 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
@@ -9,71 +15,165 @@ import {
   filmClips,
   filmChapters,
   videoFrame,
-  chapterFromTime,
+  nearbyClips,
+  sceneTreatment,
 } from "./videoTimeline";
 import { VideoScrubber } from "./VideoScrubber";
 import images from "./images.json";
 import { streetShots } from "./timeline";
 import "./streets.css";
-
+type Decoder = { video: HTMLVideoElement; controller: VideoScrubber };
+type Register = (index: number, video: HTMLVideoElement) => () => void;
+function FilmLayer({
+  index,
+  compact,
+  register,
+  onError,
+}: {
+  index: number;
+  compact: boolean;
+  register: Register;
+  onError: () => void;
+}) {
+  const ref = useRef<HTMLVideoElement>(null),
+    clip = filmClips[index];
+  useEffect(() => {
+    const video = ref.current!;
+    video.src = assetUrl(
+      `/assets/streets/video/${clip.id}-${compact ? 1280 : 1920}.mp4`,
+    );
+    return register(index, video);
+  }, [index, compact, register, clip.id]);
+  return (
+    <video
+      ref={ref}
+      className={`street-film-video ${clip.portrait ? "film-portrait" : ""}`}
+      src={assetUrl(
+        `/assets/streets/video/${clip.id}-${compact ? 1280 : 1920}.mp4`,
+      )}
+      muted
+      playsInline
+      preload="auto"
+      disablePictureInPicture
+      aria-label={`${clip.location} — scroll-controlled footage`}
+      onError={onError}
+    />
+  );
+}
 export function CinematicStreets() {
   const root = useRef<HTMLElement>(null),
-    stage = useRef<HTMLDivElement>(null);
-  const videos = useRef<(HTMLVideoElement | null)[]>([]);
-  const controllers = useRef<VideoScrubber[]>([]);
+    stage = useRef<HTMLDivElement>(null),
+    decoders = useRef(new Map<number, Decoder>());
   const progress = useRef(0),
     paint = useRef(() => {}),
     active = useRef(false),
-    lastChapter = useRef(0),
-    shown = useRef(0);
+    targetRef = useRef(0),
+    shownRef = useRef(0),
+    chapterRef = useRef(0),
+    direction = useRef(1);
   const reduced = useReducedMotion(),
     scrollTo = useScrollTo();
   const [near, setNear] = useState(false),
     [chapter, setChapter] = useState(0),
+    [target, setTarget] = useState(0),
+    [shown, setShown] = useState(0),
+    [ready, setReady] = useState(false),
     [failed, setFailed] = useState(false),
-    [ready, setReady] = useState(false);
-  const [compact, setCompact] = useState(() => innerWidth < 700);
+    [compact, setCompact] = useState(() => innerWidth < 700);
   const frame = filmChapters[chapter],
-    clip = filmClips[Math.floor(chapter / 4)];
+    clip = filmClips[shown];
+  const register = useCallback<Register>((index, video) => {
+    const controller = new VideoScrubber(video, () => paint.current());
+    decoders.current.set(index, { video, controller });
+    paint.current();
+    return () => {
+      controller.dispose();
+      decoders.current.delete(index);
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+    };
+  }, []);
   paint.current = () => {
     const f = videoFrame(progress.current),
-      cs = controllers.current;
-    cs.forEach((c, i) =>
-      c.request(i === f.clip ? f.time : i < f.clip ? 19.95 : 0),
+      pool = decoders.current;
+    if (targetRef.current !== f.clip) {
+      direction.current = f.clip > targetRef.current ? 1 : -1;
+      targetRef.current = f.clip;
+      setTarget(f.clip);
+      setFailed(false);
+    }
+    pool.forEach(({ controller }, i) =>
+      controller.request(
+        i === f.clip ? f.time : i < f.clip ? filmClips[i].duration - 0.06 : 0,
+      ),
     );
-    const wanted = cs[f.clip];
-    // Captions switch only after the new clip has decoded at its requested time.
+    const wanted = pool.get(f.clip)?.controller;
+    // Keep the last decoded image and its caption until the new destination is ready.
     if (wanted?.ready && Math.abs(wanted.settled - f.time) < 0.65) {
-      shown.current = f.clip;
-      const index = chapterFromTime(f.clip, wanted.settled);
-      if (index !== lastChapter.current) {
-        lastChapter.current = index;
-        setChapter(index);
+      if (shownRef.current !== f.clip) {
+        shownRef.current = f.clip;
+        setShown(f.clip);
+      }
+      if (chapterRef.current !== f.chapter) {
+        chapterRef.current = f.chapter;
+        setChapter(f.chapter);
       }
       setReady(true);
     }
-    videos.current.forEach((v, i) => {
-      if (v) v.style.opacity = cs[i]?.ready && i === shown.current ? "1" : "0";
+    const visible = shownRef.current,
+      visibleChapter = chapterRef.current,
+      scene = filmChapters[visibleChapter];
+    const local = Math.max(
+      0,
+      Math.min(
+        1,
+        ((pool.get(visible)?.controller.settled ?? scene.start) - scene.start) /
+          (scene.end - scene.start),
+      ),
+    );
+    const treatment = sceneTreatment(visibleChapter, reduced ? 0.5 : local);
+    pool.forEach(({ video, controller }, i) => {
+      video.style.opacity = controller.ready && i === visible ? "1" : "0";
+      video.style.transform = reduced
+        ? "none"
+        : `translateY(${treatment.y}%) scale(${treatment.scale})`;
+      video.style.clipPath = reduced
+        ? "none"
+        : `inset(${treatment.inset}% ${treatment.side}% round ${treatment.inset * 2}px)`;
     });
     stage.current?.style.setProperty("--street-progress", String(f.p));
+    stage.current?.style.setProperty(
+      "--caption-y",
+      `${reduced ? 0 : treatment.titleY}px`,
+    );
+    stage.current?.style.setProperty(
+      "--caption-opacity",
+      String(reduced ? 1 : treatment.captionOpacity),
+    );
     const output = stage.current?.querySelector<HTMLOutputElement>("output");
     if (output) {
-      output.dataset.target = f.time.toFixed(3);
-      output.dataset.time = (cs[shown.current]?.settled ?? 0).toFixed(3);
-      output.dataset.clip = String(shown.current);
-      output.dataset.seeks = String(cs.reduce((n, c) => n + c.seeks, 0));
-      output.dataset.maxSeekMs = String(
-        Math.round(Math.max(0, ...cs.map((c) => c.maxSeekMs))),
-      );
-      output.dataset.meanSeekMs = String(
-        Math.round(
-          cs.reduce((n, c) => n + c.totalSeekMs, 0) /
-            Math.max(
-              1,
-              cs.reduce((n, c) => n + c.seeks, 0),
-            ),
+      const cs = [...pool.values()].map((v) => v.controller);
+      Object.assign(output.dataset, {
+        target: f.time.toFixed(3),
+        time: (pool.get(visible)?.controller.settled ?? 0).toFixed(3),
+        clip: String(visible),
+        chapter: String(visibleChapter),
+        pool: String(pool.size),
+        seeks: String(cs.reduce((n, c) => n + c.seeks, 0)),
+        maxSeekMs: String(
+          Math.round(Math.max(0, ...cs.map((c) => c.maxSeekMs))),
         ),
-      );
+        meanSeekMs: String(
+          Math.round(
+            cs.reduce((n, c) => n + c.totalSeekMs, 0) /
+              Math.max(
+                1,
+                cs.reduce((n, c) => n + c.seeks, 0),
+              ),
+          ),
+        ),
+      });
     }
   };
   useEffect(() => {
@@ -82,12 +182,12 @@ export function CinematicStreets() {
       { rootMargin: "100% 0px" },
     );
     if (root.current) observer.observe(root.current);
-    const media = matchMedia("(max-width:699px)");
-    const resize = () => setCompact(media.matches);
-    media.addEventListener("change", resize);
+    const mq = matchMedia("(max-width:699px)"),
+      resize = () => setCompact(mq.matches);
+    mq.addEventListener("change", resize);
     return () => {
       observer.disconnect();
-      media.removeEventListener("change", resize);
+      mq.removeEventListener("change", resize);
       document.body.classList.remove("street-film-active");
     };
   }, []);
@@ -100,15 +200,13 @@ export function CinematicStreets() {
       scrollTrigger: {
         id: "street-video",
         trigger: root.current,
-        // Include the exact opening frame so the surrounding navigation yields
-        // even when the visitor enters through the introductory link or Replay.
         start: "top 1px",
         end: "bottom bottom",
-        scrub: 0.18,
+        scrub: true,
         invalidateOnRefresh: true,
-        onToggle(self) {
-          active.current = self.isActive;
-          document.body.classList.toggle("street-film-active", self.isActive);
+        onToggle(s) {
+          active.current = s.isActive;
+          document.body.classList.toggle("street-film-active", s.isActive);
         },
       },
       onUpdate() {
@@ -119,35 +217,27 @@ export function CinematicStreets() {
     return () => {
       animation.scrollTrigger?.kill();
       animation.kill();
+      active.current = false;
       document.body.classList.remove("street-film-active");
     };
   }, [reduced]);
   useEffect(() => {
     if (!near) return;
-    setReady(false);
-    setFailed(false);
-    controllers.current = videos.current
-      .filter((v): v is HTMLVideoElement => !!v)
-      .map((v) => new VideoScrubber(v, () => paint.current()));
     const tick = (_time: number, delta: number) => {
       if (document.hidden) return;
-      controllers.current.forEach((c) => c.tick());
+      decoders.current.forEach(({ controller }) => controller.tick());
       if (active.current) recordFrame("street-video", delta / 1000, 0, 0);
     };
-    paint.current();
     gsap.ticker.add(tick);
-    return () => {
-      gsap.ticker.remove(tick);
-      controllers.current.forEach((c) => c.dispose());
-      controllers.current = [];
-    };
-  }, [near, compact]);
+    return () => gsap.ticker.remove(tick);
+  }, [near]);
   const jump = (index: number) => {
-    const p = index / 8;
+    const p =
+      (Math.max(0, Math.min(filmChapters.length - 1, index)) +
+        (reduced ? 0.35 : 0.015)) /
+      filmChapters.length;
     if (reduced) {
       progress.current = p;
-      lastChapter.current = index;
-      setChapter(index);
       paint.current();
     } else if (root.current)
       scrollTo(
@@ -159,16 +249,16 @@ export function CinematicStreets() {
   return (
     <>
       <section className="street-film-intro" id="walk">
-        <span className="eyebrow">05 / TWO STREETS. MANY STORIES.</span>
+        <span className="eyebrow">05 / TWENTY MOMENTS. ONE MELBOURNE.</span>
         <h2>
           Beyond the skyline.
           <br />
-          <em>Into the streets.</em>
+          <em>Into the city.</em>
         </h2>
         <p>
-          Melbourne in motion. Travel above the city, then pause at Flinders
-          Street after dark. Collins Street awaits in our architectural
-          notebook.
+          Follow the river. Wander a laneway. Look up, slow down, find the sea.
+          Twenty moments from eleven real films — a Melbourne journey shaped by
+          your scroll.
         </p>
         <a
           href="#street-film"
@@ -186,33 +276,28 @@ export function CinematicStreets() {
         className={`street-film street-video-film ${reduced ? "is-reduced" : ""}`}
         aria-label="Melbourne scroll-controlled film"
       >
-        <div ref={stage} className="street-film-stage" data-cursor="film">
+        <div
+          ref={stage}
+          className={`street-film-stage ${clip.portrait ? "is-portrait-film" : ""}`}
+          data-cursor="film"
+        >
           <div className="street-film-images">
             <img
-              className="street-film-poster"
-              src={assetUrl(
-                "/assets/streets/video/melbourne-aerial-poster.webp",
-              )}
-              alt="Melbourne skyline from a real aerial film"
+              className={`street-film-poster ${clip.portrait ? "film-portrait" : ""}`}
+              src={assetUrl(`/assets/streets/video/${clip.id}-poster.webp`)}
+              alt={clip.location}
               loading="lazy"
             />
             {near &&
-              filmClips.map((c, i) => (
-                <video
-                  key={`${c.id}-${compact}`}
-                  ref={(v) => {
-                    videos.current[i] = v;
+              nearbyClips(target, shown, direction.current).map((i) => (
+                <FilmLayer
+                  key={`${i}-${compact}`}
+                  index={i}
+                  compact={compact}
+                  register={register}
+                  onError={() => {
+                    if (i === targetRef.current) setFailed(true);
                   }}
-                  className="street-film-video"
-                  src={assetUrl(
-                    `/assets/streets/video/${c.id}-${compact ? 1280 : 1920}.mp4`,
-                  )}
-                  muted
-                  playsInline
-                  preload="auto"
-                  disablePictureInPicture
-                  aria-label={`${c.location} — scroll-controlled footage`}
-                  onError={() => setFailed(true)}
                 />
               ))}
           </div>
@@ -224,36 +309,45 @@ export function CinematicStreets() {
               href="#your-melbourne"
               onClick={(e) => {
                 e.preventDefault();
-                document
-                  .getElementById("your-melbourne")
-                  ?.focus({ preventScroll: true });
                 scrollTo("#your-melbourne");
               }}
             >
               Skip journey ↗
             </a>
           </header>
-          {near && !ready && (
+          {near && (!ready || failed) && (
             <p className="street-film-status" role="status">
               {failed
-                ? "The film could not load. Skip ahead or revisit the architectural notebook."
+                ? "This film could not load. Choose another moment below."
                 : "Preparing the film…"}
             </p>
           )}
-          <div className="street-film-caption" key={chapter}>
+          <div className="street-film-caption">
             <span className="eyebrow">{frame.kind}</span>
-            <h2>{frame.title}</h2>
+            <div className="film-title-mask">
+              <h2>{frame.title}</h2>
+            </div>
             <p>{frame.text}</p>
           </div>
           <footer className="street-film-footer">
             <span className="street-film-count">
               {String(chapter + 1).padStart(2, "0")}
-              <i> / 08</i>
-              <small>
-                {Math.floor(chapter / 4) === 0
-                  ? "THE SKYLINE"
-                  : "FLINDERS STREET"}
-              </small>
+              <i> / {filmChapters.length}</i>
+              <label className="film-scene-picker">
+                <span className="sr-only">Choose a film scene</span>
+                <select
+                  aria-label="Choose a film scene"
+                  value={chapter}
+                  onChange={(e) => jump(Number(e.target.value))}
+                >
+                  {filmChapters.map((s, i) => (
+                    <option key={s.kind} value={i}>
+                      {String(i + 1).padStart(2, "0")} ·{" "}
+                      {s.kind.split(" / ")[1]}
+                    </option>
+                  ))}
+                </select>
+              </label>
             </span>
             <span className="street-film-hint">
               {reduced ? "CHOOSE A MOMENT" : "SCROLL TO TRAVEL"}
@@ -261,24 +355,30 @@ export function CinematicStreets() {
               <small>{clip.author} · Pexels</small>
             </span>
             <div className="street-film-actions">
-              {reduced && (
-                <>
-                  <button
-                    disabled={chapter === 0}
-                    onClick={() => jump(chapter - 1)}
-                  >
-                    Previous view
-                  </button>
-                  <button
-                    disabled={chapter === 7}
-                    onClick={() => jump(chapter + 1)}
-                  >
-                    Next view
-                  </button>
-                </>
-              )}
+              <button
+                disabled={chapter === 0}
+                aria-label="Previous film scene"
+                onClick={() => jump(chapter - 1)}
+              >
+                ←
+              </button>
+              <button
+                disabled={chapter === filmChapters.length - 1}
+                aria-label="Next film scene"
+                onClick={() => jump(chapter + 1)}
+              >
+                →
+              </button>
               <button onClick={() => jump(0)}>Replay ↺</button>
-              <a href="#street-credits">Film & photo credits</a>
+              <a
+                href="#street-credits"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo("#street-credits");
+                }}
+              >
+                Credits
+              </a>
             </div>
           </footer>
           <div className="street-film-line" aria-hidden="true" />
@@ -293,15 +393,15 @@ export function CinematicStreets() {
         <div>
           <span className="eyebrow">THE CITY, THROUGH A LENS</span>
           <h3>
-            Two streets.
+            One city.
             <br />
             <em>Many perspectives.</em>
           </h3>
           <p>
-            Two real films: a moving aerial followed by a fixed-camera view of
-            Flinders Street’s evening traffic. Scroll forwards or backwards to
-            control time. The change of location is an editorial cut, not a
-            continuous street-level walk.
+            Twenty moments, eleven real films. From the river to Hosier Lane,
+            the State Library, the Shrine and St Kilda. Scroll in either
+            direction to control time. Changes of location are editorial cuts;
+            this is a curated film journey, not unrestricted 3D exploration.
           </p>
           <p>
             Our Collins Street architectural notebook preserves the original

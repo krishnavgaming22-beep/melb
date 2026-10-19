@@ -1,0 +1,370 @@
+.city-overture {
+  height: 280svh;
+  position: relative;
+  background: #233b40;
+  color: #f3f0e8;
+  scroll-margin-top: 0 !important;
+}
+.overture-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: clip;
+  isolation: isolate;
+}
+.overture-aperture,
+.overture-shade,
+.overture-curtain {
+  position: absolute;
+  inset: 0;
+}
+.overture-aperture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.overture-shade {
+  background: linear-gradient(0deg, #07191dec, transparent 80%);
+}
+.overture-word {
+  position: absolute;
+  top: 30%;
+  left: -5%;
+  white-space: nowrap;
+  font:
+    400 23vw/0.85 Georgia,
+    serif;
+  letter-spacing: -0.065em;
+  pointer-events: none;
+}
+.overture-kicker {
+  position: absolute;
+  top: 7%;
+  left: 6%;
+  z-index: 2;
+}
+.overture-title {
+  position: absolute;
+  top: 36%;
+  left: 6%;
+  font:
+    400 clamp(60px, 8vw, 140px)/0.98 Georgia,
+    serif;
+  letter-spacing: -0.06em;
+  margin: 0;
+}
+.overture-title i {
+  display: block;
+  overflow: hidden;
+  font-style: normal;
+  padding-bottom: 0.08em;
+}
+.overture-title span {
+  display: block;
+}
+.editorial-journey .overture-title em {
+  color: #e2c39e;
+}
+.overture-note {
+  position: absolute;
+  bottom: 12%;
+  left: 6%;
+  right: 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px;
+}
+.overture-note p {
+  font-size: clamp(16px, 1.6vw, 24px);
+  margin: 0;
+}
+.overture-note a {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.overture-credit {
+  position: absolute;
+  bottom: 3%;
+  left: 6%;
+  font-size: 9px;
+  opacity: 0.8;
+}
+.overture-curtain {
+  background: #f3f0e8;
+  transform-origin: bottom;
+  pointer-events: none;
+  z-index: 4;
+}
+.landmark-passage {
+  height: 340svh;
+  background: #233b40;
+  color: #f3f0e8;
+  position: relative;
+  scroll-margin-top: 0 !important;
+}
+.landmark-passage-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: clip;
+}
+.landmark-passage-stage > header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 32px 5vw;
+  display: flex;
+  justify-content: space-between;
+  z-index: 2;
+  background: linear-gradient(#233b4099, transparent);
+}
+.landmark-passage-stage > header a {
+  font-size: 11px;
+}
+.landmark-track {
+  display: flex;
+  width: 400%;
+  height: 100%;
+  will-change: transform;
+}
+.passage-panel {
+  width: 25%;
+  flex: none;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 58% 42%;
+  align-items: center;
+}
+.passage-image {
+  height: 100%;
+  overflow: hidden;
+}
+.passage-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.passage-copy {
+  padding: 9vw 4vw 7vw;
+  position: relative;
+}
+.passage-copy h3 {
+  font:
+    400 clamp(35px, 4.5vw, 80px)/1.05 Georgia,
+    serif;
+  letter-spacing: -0.04em;
+  overflow: hidden;
+  margin: 24px 0;
+}
+.passage-copy h3 em {
+  display: block;
+  color: #d4b48e;
+  font-size: 0.64em;
+  margin-top: 20px;
+}
+.passage-copy p {
+  font-size: 14px;
+  max-width: 35ch;
+}
+.passage-copy button {
+  border: 1px solid #f3f0e855;
+  border-radius: 999px;
+  background: transparent;
+  padding: 14px 20px;
+  margin: 20px 0 28px;
+}
+.passage-copy small {
+  display: block;
+  font-size: 9px;
+  opacity: 0.7;
+}
+.passage-shrine {
+  background: #ded6c9;
+  color: #233b40;
+}
+.passage-shrine h3 em {
+  color: #806747;
+}
+.passage-shrine button {
+  border-color: #233b4055;
+}
+.landmark-passage nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  background: #233b40ed;
+  padding: 16px 5vw;
+  gap: 20px;
+  z-index: 2;
+}
+.landmark-passage nav button {
+  background: none;
+  border: 0;
+  color: #f3f0e8;
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+  font-size: 11px;
+}
+.landmark-passage nav button:hover {
+  color: #d4b48e;
+}
+.landmark-passage nav button:focus-visible {
+  outline: 2px solid #d4b48e;
+}
+@media (min-width: 900px) {
+  .editorial-article .photo-window {
+    border-radius: 2px;
+  }
+  .editorial-columns {
+    position: relative;
+  }
+  .editorial-heading {
+    perspective: 1000px;
+  }
+}
+@media (max-width: 899px) {
+  .city-overture {
+    height: 210svh;
+  }
+  .overture-title {
+    top: 36%;
+    font-size: clamp(50px, 11vw, 85px);
+  }
+  .overture-word {
+    font-size: 32vw;
+    top: 26%;
+  }
+  .overture-note {
+    bottom: 13%;
+    display: block;
+  }
+  .overture-note a {
+    display: inline-block;
+    margin-top: 20px;
+  }
+  .landmark-passage {
+    height: auto;
+  }
+  .landmark-passage-stage {
+    height: auto;
+    position: relative;
+  }
+  .landmark-passage-stage > header {
+    position: relative;
+    gap: 20px;
+    padding: 30px 22px;
+  }
+  .landmark-passage-stage > header a {
+    white-space: nowrap;
+  }
+  .landmark-track {
+    width: 100%;
+    height: auto;
+    display: block;
+    transform: none !important;
+  }
+  .passage-panel {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .passage-image {
+    height: 52svh;
+  }
+  .passage-copy {
+    padding: 35px 24px 55px;
+  }
+  .passage-copy h3 {
+    font-size: 45px;
+  }
+  .landmark-passage nav {
+    display: none;
+  }
+}
+.motion-static.city-overture {
+  height: 100svh;
+  min-height: 650px;
+}
+.motion-static .overture-stage {
+  position: relative;
+}
+.motion-static .overture-word,
+.motion-static .overture-curtain {
+  display: none;
+}
+.motion-static .overture-shade {
+  opacity: 0.7;
+}
+.motion-static.landmark-passage {
+  height: auto;
+}
+.motion-static .landmark-passage-stage {
+  height: auto;
+  position: relative;
+}
+.motion-static .landmark-track {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.motion-static .passage-panel {
+  width: 100%;
+  min-height: 80svh;
+  height: auto;
+}
+.motion-static .passage-image {
+  height: 80svh;
+}
+.motion-static .landmark-passage-stage > header {
+  position: relative;
+}
+.motion-static.landmark-passage nav {
+  display: none;
+}
+
+.overture-deck {
+  position: absolute;
+  right: 3vw;
+  bottom: 23%;
+  width: 44vw;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+.overture-card {
+  width: 20vw;
+  flex: none;
+  margin: 0 -3.5vw 0 0;
+  padding: 9px 9px 16px;
+  background: #f3f0e8;
+  color: #233b40;
+  box-shadow: 0 15px 50px #07191d55;
+  transform-origin: center bottom;
+}
+.overture-card img {
+  width: 100%;
+  height: 20vw;
+  object-fit: cover;
+}
+.overture-card figcaption {
+  padding: 10px 3px 0;
+  font:
+    italic 22px Georgia,
+    serif;
+}
+.motion-static .overture-deck {
+  display: none;
+}
+@media (max-width: 899px) {
+  .overture-deck {
+    display: none;
+  }
+}

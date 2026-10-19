@@ -1,12 +1,12 @@
 {
-  "date": "2026-10-17",
+  "date": "2026-10-19",
   "checks": [
     "8,008 forward/reverse path samples: deterministic positions, finite targets and continuous chapter tangents",
     "Scroll, direct selection and rapid previous/next share one bounded progress target",
     "Five editorial articles: selectors, university links, practical topics, licensed local photos and map/landmark connections",
     "Archived Phase 4 prototype (not on main website): four viewpoints, modes, reduced motion, looking, quality switch, error recovery, exit and restored focus",
     "Viewpoints lie within the original tile and 1.7 m above sampled high-LOD mesh surfaces; no datum alignment claimed",
-    "Street film: eight reduced-motion moments, replay/skip, two-video limit, attribution and honest Collins coverage; archived photo timeline remains deterministic"
+    "Street film: twenty decoded reduced-motion moments, reverse, direct jumps, replay/skip, StrictMode source retention, three-video limit, attribution and honest Collins coverage"
   ],
   "pathSamples": [
     {
@@ -38,5 +38,5 @@
       "minDistance": 4.752860448932001
     }
   ],
-  "browser": "Blocked by browser URL security policy; no FPS, responsive layout or live WebGL claims"
+  "browser": "Offline tests only. Public deployment browser evidence is tracked separately in docs/PHASE_4_2.md."
 }

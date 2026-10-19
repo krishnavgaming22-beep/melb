@@ -95,7 +95,7 @@ export function ArrivalExperience() {
                 trigger: root.current,
                 start: "top top",
                 end: "bottom bottom",
-                scrub: reduced ? true : 0.35,
+                scrub: true,
                 invalidateOnRefresh: true,
               },
         onUpdate: () => {
@@ -125,7 +125,13 @@ export function ArrivalExperience() {
       arrival
         .to(
           ".opening-word",
-          { yPercent: reduced ? 0 : -14, opacity: 0, duration: 0.23 },
+          {
+            yPercent: reduced ? 0 : -35,
+            scale: reduced ? 1 : 1.65,
+            xPercent: reduced ? 0 : -8,
+            opacity: 0,
+            duration: 0.23,
+          },
           0.18,
         )
         .to(
@@ -168,6 +174,28 @@ export function ArrivalExperience() {
         .to(".arrival-stage", { "--ui-color": "#f2efe8", duration: 0.2 }, 0.42);
       arrival.to({}, { duration: 0.02 }, 0.98);
       if (!reduced) {
+        root.current?.querySelectorAll(".opening-word").forEach((word) => {
+          arrival.to(
+            word.querySelectorAll(".arrival-letter"),
+            {
+              yPercent: (i: number) => (i % 2 ? -32 : 24),
+              rotation: (i: number) => (i % 2 ? -4 : 3),
+              stagger: 0.008,
+              duration: 0.23,
+            },
+            0.12,
+          );
+        });
+        arrival.to(
+          ".sky-cloud-one",
+          { xPercent: -36, yPercent: 22, scale: 1.3, duration: 0.65 },
+          0,
+        );
+        arrival.to(
+          ".sky-cloud-two",
+          { xPercent: 22, yPercent: -16, scale: 1.12, duration: 0.65 },
+          0,
+        );
         // Child typography follows the same master scroll timeline as the aircraft.
         const entries = [
           [".flight-copy h2", 0.26],
@@ -229,6 +257,20 @@ export function ArrivalExperience() {
           { autoAlpha: 1, duration: 0.03 },
           0.945,
         );
+      if (!reduced) {
+        tl.fromTo(
+          ".city-overview-copy",
+          { scale: 1.22, transformOrigin: "left center" },
+          { scale: 1, duration: 0.09 },
+          0.67,
+        );
+        tl.fromTo(
+          ".discovery-browser",
+          { clipPath: "inset(0 100% 0 0)" },
+          { clipPath: "inset(0 0% 0 0)", duration: 0.035 },
+          0.94,
+        );
+      }
       tl.fromTo(
         ".discovery-browser",
         { y: reduced ? 0 : 8 },
@@ -318,7 +360,13 @@ export function ArrivalExperience() {
             <span className="eyebrow opening-kicker">
               A DIFFERENT PERSPECTIVE
             </span>
-            <h1>MELB.</h1>
+            <h1 aria-label="MELB.">
+              {Array.from("MELB.").map((letter, i) => (
+                <span className="arrival-letter" aria-hidden="true" key={i}>
+                  {letter}
+                </span>
+              ))}
+            </h1>
             <div className="word-subline">
               <span>ARRIVE.</span>
               <span>EXPLORE.</span>
@@ -366,7 +414,13 @@ export function ArrivalExperience() {
             <span className="eyebrow opening-kicker">
               A DIFFERENT PERSPECTIVE
             </span>
-            <span className="occluded-word">MELB.</span>
+            <span className="occluded-word">
+              {Array.from("MELB.").map((letter, i) => (
+                <span className="arrival-letter" key={i}>
+                  {letter}
+                </span>
+              ))}
+            </span>
             <div className="word-subline">
               <span>ARRIVE.</span>
               <span>EXPLORE.</span>

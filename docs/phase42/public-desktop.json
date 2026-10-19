@@ -1,0 +1,30 @@
+{
+  "viewport": {
+    "height": 819,
+    "scrollWidth": 1171,
+    "width": 1171
+  },
+  "diagnostics": {
+    "canvases": "1",
+    "drawCalls": "115",
+    "fps": "60",
+    "frameReport": "{\"arrival\":{\"samples\":600,\"averageFps\":60,\"p50ms\":16.700000762939453,\"p95ms\":17.600000381469727,\"longFramesOver50ms\":0,\"lastDrawCalls\":115,\"lastTriangles\":578259},\"discovery\":{\"samples\":600,\"averageFps\":60,\"p50ms\":16.700000762939453,\"p95ms\":16.899999618530273,\"longFramesOver50ms\":0,\"lastDrawCalls\":115,\"lastTriangles\":578259},\"street-video\":{\"samples\":600,\"averageFps\":60,\"p50ms\":17,\"p95ms\":17,\"longFramesOver50ms\":0,\"lastDrawCalls\":0,\"lastTriangles\":0}}",
+    "lenis": "true",
+    "progress": "1.0000",
+    "rendered": "1.0000",
+    "triangles": "578259",
+    "triggers": "64"
+  },
+  "film": {
+    "chapter": "14",
+    "clip": "8",
+    "maxSeekMs": "46",
+    "meanSeekMs": "46",
+    "pool": "2",
+    "seeks": "1",
+    "target": "0.117",
+    "testid": "film-diagnostics",
+    "time": "0.117"
+  },
+  "console": []
+}

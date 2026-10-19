@@ -44,3 +44,12 @@ The collection now covers CBD, Yarra/Southbank, Swanston, Hosier, State Library,
 
 ## Validation
 Offline: production TypeScript/Vite build; map/discovery, landmarks, editorial DOM, actual OrbitControls direction, media readiness/coalescing, 10,001 timeline samples, 20 forward/reverse manually selected decoded scenes, rapid jumps, StrictMode source retention, decoder ceiling and deterministic framing tests. Live public verification follows deployment; localhost's prior saved browser denial was not bypassed. Safari and physical-device performance are not claimed from desktop browser emulation.
+
+### Public deployment verification
+Verified on the published GitHub Pages site in the desktop browser (1171 × 819): opening/flight, Australia map, full discovery reveal and landmark search, horizontal Flinders panel, 3D entry/zoom/return, skyline reveal at several positions and in reverse, Shrine forward/reverse film seeking, portrait Library framing, St Kilda, and reduced-motion manual scene selection. Console error/warning collection was empty. Document width equalled viewport width. The main experience retained one canvas; inactive video sections released their decoders. Screenshots in `docs/phase42` are local visual evidence, not a continuous screen recording.
+
+Rolling 600-frame samples reported approximately 60 fps in arrival, discovery and film sections on this machine; this is a frame-cadence observation, not a universal device benchmark or GPU-memory measurement. Warm film seeking was typically tens of milliseconds in the inspected samples. Cold direct jumps reached 1.8–2.6 seconds while media decoded; the prior frame and caption remained visible. Network-dependent cold seeking remains a limitation.
+
+Live review found and fixed incomplete discovery reveal at the Explore shortcut, premature staggered title/card visibility, landmark title overlap, and postcard framing. All 22 responsive video files decoded through their final frame offline. Production build and all 27 automated test groups passed after final styling changes.
+
+Responsive CSS and smaller film variants are implemented, but the browser viewport override did not change the actual reported dimensions. Consequently mobile visual testing, physical-device performance and Safari are **not verified**. The desktop reduced-motion preference and manual film selection were verified and then restored to full motion. Public evidence: `phase42/public-desktop.json`, `phase42/public-interactions.json`; media integrity: `phase42/media-verification.json`.

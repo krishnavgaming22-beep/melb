@@ -1,0 +1,20 @@
+{
+  "viewport": {
+    "height": 819,
+    "scrollWidth": 1171,
+    "width": 1171
+  },
+  "console": [],
+  "checked": [
+    "Horizontal landmark passage",
+    "Flinders 3D entry, zoom and return",
+    "Discovery map handoff and Shrine search",
+    "Reduced-motion manual scene 11",
+    "Restored full motion"
+  ],
+  "limitations": [
+    "Viewport override did not change reported dimensions; mobile visual QA unverified",
+    "Safari and physical devices untested",
+    "Cold reduced-motion scene switch observed 2572ms; old frame retained"
+  ]
+}

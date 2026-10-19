@@ -23,7 +23,7 @@ export function CityOverture() {
         // Set every staggered layer before the timeline starts; later stagger
         // children otherwise retain their natural layout until their own start.
         gsap.set(".overture-title span", { yPercent: 115 });
-        if (wide) gsap.set(".overture-card", { yPercent: 150, rotation: 12 });
+        if (wide) gsap.set(".overture-card", { yPercent: 240, rotation: 12 });
         const tl = gsap.timeline({
           defaults: { ease: "none" },
           scrollTrigger: {
@@ -94,7 +94,7 @@ export function CityOverture() {
           );
           tl.fromTo(
             ".overture-card",
-            { yPercent: 150, rotation: 12 },
+            { yPercent: 240, rotation: 12 },
             {
               yPercent: 0,
               rotation: (i) => [-6, 2, 7][i],

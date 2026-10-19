@@ -334,15 +334,15 @@
   position: absolute;
   right: 3vw;
   bottom: 23%;
-  width: 44vw;
+  width: 46vw;
   display: flex;
   align-items: center;
   pointer-events: none;
 }
 .overture-card {
-  width: 20vw;
+  width: 17vw;
   flex: none;
-  margin: 0 -3.5vw 0 0;
+  margin: 0 -2.5vw 0 0;
   padding: 9px 9px 16px;
   background: #f3f0e8;
   color: #233b40;
@@ -351,7 +351,7 @@
 }
 .overture-card img {
   width: 100%;
-  height: 20vw;
+  height: 18vw;
   object-fit: cover;
 }
 .overture-card figcaption {

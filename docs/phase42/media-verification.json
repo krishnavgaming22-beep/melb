@@ -1,0 +1,200 @@
+[
+  {
+    "file": "shrine-axis-1920.mp4",
+    "bytes": 3131050,
+    "metadata": [
+      "Duration: 00:00:04.00, start: 0.000000, bitrate: 6262 kb/s",
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1920x1080, 6259 kb/s, 24 fps, 24 tbr, 12288 tbn (default)"
+    ],
+    "lastFrameDecoded": true
+  },
+  {
+    "file": "library-dome-1920.mp4",
+    "bytes": 4206569,
+    "metadata": [
+      "Duration: 00:00:10.00, start: 0.000000, bitrate: 3365 kb/s",
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 608x1080, 3363 kb/s, 24 fps, 24 tbr, 12288 tbn (default)"
+    ],
+    "lastFrameDecoded": true
+  },
+  {
+    "file": "swanston-life-1920.mp4",
+    "bytes": 17733133,
+    "metadata": [
+      "Duration: 00:00:12.00, start: 0.000000, bitrate: 11822 kb/s",
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1920x1080, 11820 kb/s, 24 fps, 24 tbr, 12288 tbn (default)"
+    ],
+    "lastFrameDecoded": true
+  },
+  {
+    "file": "st-kilda-1920.mp4",
+    "bytes": 22126148,
+    "metadata": [
+      "Duration: 00:00:14.00, start: 0.000000, bitrate: 12643 kb/s",
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1920x1080, 12642 kb/s, 24 fps, 24 tbr, 12288 tbn (default)"
+    ],
+    "lastFrameDecoded": true
+  },
+  {
+    "file": "flinders-night-1280.mp4",
+    "bytes": 12121598,
+    "metadata": [
+      "Duration: 00:00:20.00, start: 0.000000, bitrate: 4848 kb/s",
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1280x720, 4847 kb/s, 24 fps, 24 tbr, 12288 tbn (default)"
+    ],
+    "lastFrameDecoded": true
+  },
+  {
+    "file": "shrine-gardens-1920.mp4",
+    "bytes": 5684073,
+    "metadata": [
+      "Duration: 00:00:06.50, start: 0.000000, bitrate: 6995 kb/s",
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1920x1080, 6993 kb/s, 24 fps, 24 tbr, 12288 tbn (default)"
+    ],
+    "lastFrameDecoded": true
+  },
+  {
+    "file": "yarra-evening-1920.mp4",
+    "bytes": 11054146,
+    "metadata": [
+      "Duration: 00:00:16.00, start: 0.000000, bitrate: 5527 kb/s",
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1920x1080, 5525 kb/s, 24 fps, 24 tbr, 12288 tbn (default)"
+    ],
+    "lastFrameDecoded": true
+  },
+  {
+    "file": "melbourne-aerial-1920.mp4",
+    "bytes": 30564252,
+    "metadata": [
+      "Duration: 00:00:20.00, start: 0.000000, bitrate: 12225 kb/s",
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1920x1080, 12224 kb/s, 24 fps, 24 tbr, 12288 tbn (default)"
+    ],
+    "lastFrameDecoded": true
+  },
+  {
+    "file": "shrine-stone-1920.mp4",
+    "bytes": 12506872,
+    "metadata": [
+      "Duration: 00:00:14.00, start: 0.000000, bitrate: 7146 kb/s",
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1920x1080, 7145 kb/s, 24 fps, 24 tbr, 12288 tbn (default)"
+    ],
+    "lastFrameDecoded": true
+  },
+  {
+    "file": "yarra-approach-1920.mp4",
+    "bytes": 19229931,
+    "metadata": [
+      "Duration: 00:00:12.00, start: 0.000000, bitrate: 12819 kb/s",
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1920x1080, 12818 kb/s, 24 fps, 24 tbr, 12288 tbn (default)"
+    ],
+    "lastFrameDecoded": true
+  },
+  {
+    "file": "hosier-lane-1920.mp4",
+    "bytes": 18331293,
+    "metadata": [
+      "Duration: 00:00:18.00, start: 0.000000, bitrate: 8147 kb/s",
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1920x1080, 8145 kb/s, 24 fps, 24 tbr, 12288 tbn (default)"
+    ],
+    "lastFrameDecoded": true
+  },
+  {
+    "file": "yarra-approach-1280.mp4",
+    "bytes": 9607279,
+    "metadata": [
+      "Duration: 00:00:12.00, start: 0.000000, bitrate: 6404 kb/s",
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1280x720, 6403 kb/s, 24 fps, 24 tbr, 12288 tbn (default)"
+    ],
+    "lastFrameDecoded": true
+  },
+  {
+    "file": "shrine-stone-1280.mp4",
+    "bytes": 6045933,
+    "metadata": [
+      "Duration: 00:00:14.00, start: 0.000000, bitrate: 3454 kb/s",
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1280x720, 3453 kb/s, 24 fps, 24 tbr, 12288 tbn (default)"
+    ],
+    "lastFrameDecoded": true
+  },
+  {
+    "file": "hosier-lane-1280.mp4",
+    "bytes": 9541220,
+    "metadata": [
+      "Duration: 00:00:18.00, start: 0.000000, bitrate: 4240 kb/s",
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1280x720, 4239 kb/s, 24 fps, 24 tbr, 12288 tbn (default)"
+    ],
+    "lastFrameDecoded": true
+  },
+  {
+    "file": "shrine-axis-1280.mp4",
+    "bytes": 1576745,
+    "metadata": [
+      "Duration: 00:00:04.00, start: 0.000000, bitrate: 3153 kb/s",
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1280x720, 3150 kb/s, 24 fps, 24 tbr, 12288 tbn (default)"
+    ],
+    "lastFrameDecoded": true
+  },
+  {
+    "file": "swanston-life-1280.mp4",
+    "bytes": 9570527,
+    "metadata": [
+      "Duration: 00:00:12.00, start: 0.000000, bitrate: 6380 kb/s",
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1280x720, 6378 kb/s, 24 fps, 24 tbr, 12288 tbn (default)"
+    ],
+    "lastFrameDecoded": true
+  },
+  {
+    "file": "st-kilda-1280.mp4",
+    "bytes": 11050359,
+    "metadata": [
+      "Duration: 00:00:14.00, start: 0.000000, bitrate: 6314 kb/s",
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1280x720, 6313 kb/s, 24 fps, 24 tbr, 12288 tbn (default)"
+    ],
+    "lastFrameDecoded": true
+  },
+  {
+    "file": "library-dome-1280.mp4",
+    "bytes": 2246037,
+    "metadata": [
+      "Duration: 00:00:10.00, start: 0.000000, bitrate: 1796 kb/s",
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 406x720, 1795 kb/s, 24 fps, 24 tbr, 12288 tbn (default)"
+    ],
+    "lastFrameDecoded": true
+  },
+  {
+    "file": "shrine-gardens-1280.mp4",
+    "bytes": 2720554,
+    "metadata": [
+      "Duration: 00:00:06.50, start: 0.000000, bitrate: 3348 kb/s",
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1280x720, 3346 kb/s, 24 fps, 24 tbr, 12288 tbn (default)"
+    ],
+    "lastFrameDecoded": true
+  },
+  {
+    "file": "flinders-night-1920.mp4",
+    "bytes": 22015774,
+    "metadata": [
+      "Duration: 00:00:20.00, start: 0.000000, bitrate: 8806 kb/s",
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1920x1080, 8804 kb/s, 24 fps, 24 tbr, 12288 tbn (default)"
+    ],
+    "lastFrameDecoded": true
+  },
+  {
+    "file": "melbourne-aerial-1280.mp4",
+    "bytes": 16649352,
+    "metadata": [
+      "Duration: 00:00:20.00, start: 0.000000, bitrate: 6659 kb/s",
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1280x720, 6658 kb/s, 24 fps, 24 tbr, 12288 tbn (default)"
+    ],
+    "lastFrameDecoded": true
+  },
+  {
+    "file": "yarra-evening-1280.mp4",
+    "bytes": 5524925,
+    "metadata": [
+      "Duration: 00:00:16.00, start: 0.000000, bitrate: 2762 kb/s",
+      "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt709, progressive), 1280x720, 2761 kb/s, 24 fps, 24 tbr, 12288 tbn (default)"
+    ],
+    "lastFrameDecoded": true
+  }
+]

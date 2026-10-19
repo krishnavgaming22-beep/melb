@@ -142,6 +142,11 @@ export function CinematicStreets() {
         ? "none"
         : `inset(${treatment.inset}% ${treatment.side}% round ${treatment.inset * 2}px)`;
     });
+    const poster = stage.current?.querySelector<HTMLElement>(
+      ".street-film-poster",
+    );
+    if (poster)
+      poster.style.opacity = pool.get(visible)?.controller.ready ? "0" : "1";
     stage.current?.style.setProperty("--street-progress", String(f.p));
     stage.current?.style.setProperty(
       "--caption-y",

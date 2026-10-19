@@ -368,3 +368,9 @@
     display: none;
   }
 }
+
+@media (min-width: 900px) {
+  .landmark-passage-stage > header {
+    padding-top: 100px;
+  }
+}

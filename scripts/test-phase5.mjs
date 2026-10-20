@@ -6,7 +6,7 @@ import { PerspectiveCamera, Vector3 } from "three";
 const dir = ".photomesh-test";
 await build({
   stdin: {
-    contents: `export * from './src/scenes/CinematicStreets/VideoScrubber'; export * from './src/scenes/CinematicStreets/videoTimeline'; export * from './src/scenes/LandmarkExperience/cameraControls'; export * from './src/scenes/LandmarkExperience/registry';`,
+    contents: `export * from './src/scenes/CinematicStreets/VideoScrubber'; export * from './src/scenes/CinematicStreets/videoTimeline'; export * from './src/scenes/LandmarkExperience/cameraControls'; export * from './src/scenes/LandmarkExperience/registry'; export * from './src/utils/chunkRecovery';`,
     resolveDir: process.cwd(),
     loader: "ts",
   },
@@ -26,7 +26,25 @@ const {
   chapterFromTime,
   createLandmarkControls,
   landmarks,
+  claimChunkRecovery,
 } = await import("../.photomesh-test/phase5-test.mjs");
+const recoveryValues = new Map();
+const recoveryStorage = {
+  getItem: (key) => recoveryValues.get(key) ?? null,
+  setItem: (key, value) => recoveryValues.set(key, value),
+};
+assert.equal(claimChunkRecovery(recoveryStorage, "build-a"), true);
+assert.equal(claimChunkRecovery(recoveryStorage, "build-a"), false);
+assert.equal(claimChunkRecovery(recoveryStorage, "build-b"), true);
+assert.equal(claimChunkRecovery({
+  getItem() { throw new Error("Storage blocked"); },
+  setItem() {},
+}, "build-c"), false);
+assert.equal(claimChunkRecovery({
+  getItem() { return null; },
+  setItem() { throw new Error("Quota exceeded"); },
+}, "build-c"), false);
+console.log("PASS Deployment recovery: once per build, blocked storage and quota cannot create reload loops");
 let paints = 0;
 class Video extends EventTarget {
   readyState = 2;
